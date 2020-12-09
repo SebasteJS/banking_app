@@ -1,4 +1,5 @@
 package pl.sda.demo.model;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,8 +36,30 @@ public class Customer {
     @Column(name = "kids")
     private int kids;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "credit_id", referencedColumnName = "id")
+    @ManyToOne
+    private FinanceAdvisor financeAdvisor;
+
+    @OneToOne(mappedBy = "customer")
     private Credit credit;
+
+    @OneToOne(mappedBy = "customer")
+    private Property property;
+
+    @OneToOne(mappedBy = "customer")
+    private CustomerIncome customerIncome;
+
+    @OneToOne(mappedBy = "customer")
+    private CustomerLiabilities customerLiabilities;
+
+    @OneToOne(mappedBy = "customer")
+    private Broker broker;
+
+
+
+
+
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "credit_id", referencedColumnName = "id")
+//    private Credit credit;
 }
 

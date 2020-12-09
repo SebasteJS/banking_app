@@ -27,4 +27,8 @@ public class CustomerLiabilities {
 
     @Column
     private double childSupport;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    private Customer customer;
 }

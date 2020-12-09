@@ -31,6 +31,10 @@ public class Broker {
 
     @Column
     private String email;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    private Customer customer;
 }
 
 

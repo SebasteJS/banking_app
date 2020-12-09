@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -12,7 +13,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "finance_advisor")
-public class FinancelAdvisor {
+public class FinanceAdvisor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,4 +31,10 @@ public class FinancelAdvisor {
 
     @Column(name = "PASSWORD")
     private String password;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    private List<Customer> customers;
+
+
 }
