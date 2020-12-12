@@ -24,7 +24,7 @@ public class Credit {
     @Column
     private int creditPeriod;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 

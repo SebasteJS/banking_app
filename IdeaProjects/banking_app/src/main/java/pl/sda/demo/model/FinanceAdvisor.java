@@ -32,7 +32,7 @@ public class FinanceAdvisor {
     @Column(name = "PASSWORD")
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private List<Customer> customers;
 

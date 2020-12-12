@@ -36,7 +36,7 @@ public class CustomerIncome {
     @Column
     private boolean isKartaPodatkowa;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
