@@ -36,6 +36,12 @@ public class Customer {
     @Column(name = "kids")
     private int kids;
 
+    @Column(name = "login")
+    private String login;
+
+    @Column(name = "password")
+    private String password;
+
     @ManyToOne
     private FinanceAdvisor financeAdvisor;
 
