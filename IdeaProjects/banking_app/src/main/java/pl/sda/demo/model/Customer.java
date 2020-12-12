@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -42,6 +43,24 @@ public class Customer {
     @Column(name = "password")
     private String password;
 
+
+
+    // status klienta - 1. prospect, 2. złożont wniosek;
+    // 3. kredyt wypłacony 4. nieaktywny
+
+    // 1
+    @Column(name = "prospect")
+    private boolean isProspect;
+    // 2
+    @Column(name = "credit_application_submitted")
+    private boolean isCreditApplicationSubmitted;
+    // 3
+    @Column(name = "credit_finished")
+    private boolean isCredutFinshed;
+    // 4
+    @Column(name = "inactive")
+    private boolean isInactive;
+
     @ManyToOne
     private FinanceAdvisor financeAdvisor;
 
@@ -59,6 +78,11 @@ public class Customer {
 
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
     private Broker broker;
+
+    @OneToMany
+    @JoinColumn(name = "notes_id", referencedColumnName = "id")
+    private List<Notes> notes;
+
 
 
 
