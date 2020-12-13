@@ -20,8 +20,8 @@ public class ClientDto implements Serializable {
     private Long phoneNumber;
     private String email;
 
- @Min(18)
- @Max(65)
+    @Min(18)
+    @Max(65)
     private Integer age;
     private Integer children;
 

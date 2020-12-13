@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add new client</title>
+    <title>Dodaj nowego klienta</title>
 <!--    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet" />-->
 <!--    <script type="text/javascript" src="css/jquery-3.5.1.min.js"></script>-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -12,113 +12,108 @@
 <div class="container" >
 
 <h1>
-    Insert client's data:
+    Wprowadź dane klienta:
 </h1>
         <table class="table table-bordered">
 <form method="post" th:action="@{/form}" th:object="${clientForm}">
     <label>
-        First name:
+        Imię:
         <input type="text" th:field="*{firstName}">
     </label></br>
     <label>
-        Last name:
+        Nazwisko:
         <input type="text" th:field="*{lastName}">
     </label></br>
     <label>
-        Age:
+        Wiek:
         <input type="number" th:field="*{age}">
     </label></br>
     <label>
-        Phone number:
+        Numer telefonu:
         <input type="tel" th:field="*{phoneNumber}">
     </label></br>
     <label>
-        E-mail address:
-        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+       Adres E-mail:
+        <input type="email" class="form-control" id="email" placeholder="nazwa@przykład.pl">
     </label></br>
     <label>
-        Number of children:
+        Dzieci:
         <input type="number" th:field="*{children}">
     </label></br>
     <div class="form-group">
-        <label> Credit cards:
+        <label> Karty kredytowe:
         <select class="clientForm" id="hasCreditCard">
-            <option>Yes</option>
-            <option>No</option>
+            <option>Tak</option>
+            <option>Nie</option>
 
         </select>
         </label></br>
     </div>
     <div class="form-group">
-        <label> Debit cards:
+        <label> Karty debetowe:
             <select class="clientForm" id="hasDebitCard">
-                <option>Yes</option>
-                <option>No</option>
+                <option>Tak</option>
+                <option>Nie</option>
 
             </select>
         </label></br>
     </div>
 
 
-    <label>
-        Income brutto:
-        <input type="number" th:field="*{incomeBrutto}">
-        PLN
-    </label></br>
 
     <label>
-        Income netto:
+        Przychód netto:
         <input type="number" th:field="*{incomeNetto}">
         PLN
     </label></br>
     <div class="form-group">
-        <label> Long term job:
+        <label> Umowa na czas nieokreślony:
             <select class="clientForm" id="haLongTermJob">
-                <option>Yes</option>
-                <option>No</option>
+                <option>Tak</option>
+                <option>Nie</option>
 
             </select>
         </label></br>
     </div>
     <div class="form-group">
-        <label> Running own business:
+        <label> Własne przedsiębiorstwo:
             <select class="clientForm" id="hasOwnBusiness">
-                <option>Yes</option>
-                <option>No</option>
+                <option>Tak</option>
+                <option>Nie</option>
 
             </select>
         </label></br>
     </div>
     <div class="form-group">
-        <label> Is lump sum:
+        <label> Ryczałt:
             <select class="clientForm" id="isLumpSum">
-                <option>Yes</option>
-                <option>No</option>
+                <option>Tak</option>
+                <option>Nie</option>
 
             </select>
         </label></br>
     </div>
     <div class="form-group">
-        <label> Civil law contract:
+        <label> Umowa cywilno-prawna:
             <select class="clientForm" id="hasCLContract">
-                <option>Yes</option>
-                <option>No</option>
+                <option>Tak</option>
+                <option>Nie</option>
 
             </select>
         </label></br>
     </div>
     <div class="form-group">
-        <label> Card:
+        <label> Karta:
             <select class="clientForm" id="hasCard">
-                <option>Yes</option>
-                <option>No</option>
+                <option>Tak</option>
+                <option>Nie</option>
 
             </select>
         </label></br>
     </div>
 
 
-    <input type="button" value="Submit" onclick="$('#addUserDiv').toggle()" class="btn btn-success"/>
+    <input type="button" value="Zatwierdź" onclick="$('#addUserDiv').toggle()" class="btn btn-success"/>
 
 
 </form>
