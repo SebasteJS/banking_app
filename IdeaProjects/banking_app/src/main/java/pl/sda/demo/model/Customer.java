@@ -37,11 +37,11 @@ public class Customer {
     @Column(name = "kids")
     private int kids;
 
-    @Column(name = "login")
-    private String login;
-
-    @Column(name = "password")
-    private String password;
+//    @Column(name = "login")
+//    private String login;
+//
+//    @Column(name = "password")
+//    private String password;
 
 
 
@@ -56,7 +56,7 @@ public class Customer {
     private boolean isCreditApplicationSubmitted;
     // 3
     @Column(name = "credit_finished")
-    private boolean isCredutFinshed;
+    private boolean isCreditFinshed;
     // 4
     @Column(name = "inactive")
     private boolean isInactive;
