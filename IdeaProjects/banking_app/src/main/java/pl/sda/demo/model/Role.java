@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 @Entity
 @Table(name = "Role")
 public class Role {
@@ -23,4 +24,3 @@ public class Role {
     @Enumerated(EnumType.STRING)
     private RoleType type;
 }
-
