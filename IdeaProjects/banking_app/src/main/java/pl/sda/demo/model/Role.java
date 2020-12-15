@@ -23,4 +23,9 @@ public class Role {
     @Column(name = "typ_roli")
     @Enumerated(EnumType.STRING)
     private RoleType type;
+
+    @Override
+    public String toString() {
+        return "" + type ;
+    }
 }
