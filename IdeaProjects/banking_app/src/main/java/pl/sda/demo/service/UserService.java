@@ -4,9 +4,11 @@ package pl.sda.demo.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.sda.demo.model.Role;
 import pl.sda.demo.model.User;
 import pl.sda.demo.repository.RoleRepository;
 import pl.sda.demo.dto.UserDto;
+import pl.sda.demo.role.RoleType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +46,9 @@ public class UserService {
 //                            .password(users2.getPassword())
                             .roles(users2.getRoles())
                             .build());
+//            if (users2.getRoles().toString().equals("")){
+//                users2.setRoles(new ArrayList<Role>());
+//            }
         }
         return userDtoUser;
 

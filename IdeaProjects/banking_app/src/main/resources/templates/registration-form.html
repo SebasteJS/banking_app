@@ -9,31 +9,6 @@
 <body style="background-color:#6495ED">
 <div class="container">
     <br/>
-<!--    <h3 class="h3">Users:</h3>-->
-<!--    <table class="table table-bordered">-->
-<!--        <tr class="table-striped">-->
-<!--            <th>first_name</th>-->
-<!--            <th>last_name</th>-->
-<!--            <th>Login</th>-->
-<!--            <th>Password</th>-->
-<!--            <th>Role</th>-->
-<!--        </tr>-->
-
-<!--        <th:block th:each="user: ${users}">-->
-<!--            <tr>-->
-<!--                <td th:text="${user.first_name}"></td>-->
-<!--                <td th:text="${user.last_name}"></td>-->
-<!--                <td th:text="${user.login}"></td>-->
-<!--                <td th:text="${user.password}"></td>-->
-<!--                <td th:text="${user.role}"></td>-->
-
-<!--            </tr>-->
-<!--        </th:block>-->
-<!--    </table>-->
-<!--    <div>-->
-<!--        <input type="button" value="dodaj" onclick="$('#addPersonDiv').toggle()" class="btn btn-success"/>-->
-<!--        <input type="button" value="edytuj" onclick="" class="btn btn-success"/>-->
-<!--    </div>-->
     <div id="addPersonDiv">
         <form class="form-horizontal" method="post" th:action="@{/registration}" th:object="${user}">
             <fieldset>

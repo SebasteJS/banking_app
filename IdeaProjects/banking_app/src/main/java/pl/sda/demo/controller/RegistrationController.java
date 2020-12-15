@@ -7,10 +7,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.sda.demo.model.Role;
+import pl.sda.demo.role.RoleType;
 import pl.sda.demo.service.UserService;
 import pl.sda.demo.dto.UserDto;
 
 import javax.validation.Valid;
+import java.util.Arrays;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,10 +24,12 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registration(Model model) {
-        model.addAttribute("users",UserService.findAll());
+        model.addAttribute("users", UserService.findAll());
         model.addAttribute("user", UserDto.builder().build());
         return "registration-form";
     }
+
+
 
 
     @PostMapping("/registration")
@@ -32,8 +37,8 @@ public class RegistrationController {
         if (!bindingResult.hasErrors()) {
             UserService.add(user2);
         }
+            model.addAttribute("users", new UserDto());
 
-        model.addAttribute("users", new UserDto());
         return "registration-form";
     }
 
