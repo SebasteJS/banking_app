@@ -38,6 +38,14 @@ public class UserService {
         List<UserDto> userDtoUser = new ArrayList<>();
         Iterable<User> users = UserRepository.findAll();
         for (User users2 : users) {
+
+            if (users2.getRoles().isEmpty()) {
+                for (Role role1 : users2.getRoles()) {
+
+                    role1.setType(RoleType.CLIENT);
+                }
+            }
+
             userDtoUser.add(
                     UserDto.builder()
                             .first_name(users2.getFirst_name())
@@ -46,9 +54,8 @@ public class UserService {
 //                            .password(users2.getPassword())
                             .roles(users2.getRoles())
                             .build());
-//            if (users2.getRoles().toString().equals("")){
-//                users2.setRoles(new ArrayList<Role>());
-//            }
+
+
         }
         return userDtoUser;
 
