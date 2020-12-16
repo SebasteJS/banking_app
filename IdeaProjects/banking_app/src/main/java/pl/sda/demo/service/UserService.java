@@ -20,8 +20,6 @@ public class UserService {
 
     private final pl.sda.demo.repository.UserRepository UserRepository;
 
-    @Autowired
-    private final RoleRepository roleRepository;
 
     public Long add(UserDto userDto) {
         User user1 = User.builder()
@@ -31,6 +29,13 @@ public class UserService {
                 .password(userDto.getPassword())
                 .roles(userDto.getRoles())
                 .build();
+
+        if (user1.getRoles().isEmpty()) {
+            for (Role role1 : user1.getRoles()) {
+
+                role1.setType(RoleType.CLIENT);
+            }
+        }
         UserRepository.save(user1);
         return UserRepository.save(user1).getId();
     }
