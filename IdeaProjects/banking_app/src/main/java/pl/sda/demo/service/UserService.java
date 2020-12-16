@@ -8,6 +8,7 @@ import pl.sda.demo.model.Role;
 import pl.sda.demo.model.User;
 import pl.sda.demo.repository.RoleRepository;
 import pl.sda.demo.dto.UserDto;
+import pl.sda.demo.repository.UserRepository;
 import pl.sda.demo.role.RoleType;
 
 import java.util.ArrayList;
