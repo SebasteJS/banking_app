@@ -20,18 +20,27 @@ import java.util.List;
 public class UserService {
 
     private final pl.sda.demo.repository.UserRepository UserRepository;
+    private final pl.sda.demo.repository.RoleRepository RoleRepository;
 
 
     public Long add(UserDto userDto) {
+        var roles = userDto.getRoles();
+        if(roles == null){
+            var role = new Role(RoleType.CLIENT);
+            RoleRepository.save(role);
+            roles = Arrays.asList(role);
+        }
         User user1 = User.builder()
                 .first_name(userDto.getFirst_name())
                 .last_name(userDto.getLast_name())
                 .login(userDto.getLogin())
                 .password(userDto.getPassword())
-                .roles(userDto.getRoles())
+                .roles(roles)
                 .build();
+
         UserRepository.save(user1);
-        return UserRepository.save(user1).getId();
+
+        return user1.getId();
     }
 
     public List<UserDto> findAll() {
@@ -54,21 +63,3 @@ public class UserService {
 
 
 
-
-//    if (UserRepository.user1.getRoles().isEmpty()) {
-//            for (Role role1 : user1.getRoles()) {
-//
-//                role1.setType(RoleType.CLIENT);
-//            }
-//        }
-
-//    if (UserRepository.user1.getRoles().isEmpty()) {
-//            for (Role role1 : user1.getRoles()) {
-//
-//                role1.setType(RoleType.CLIENT);
-//            }
-//        }
-
-
-//Role clientRole = roleRepository.findByType(RoleType.CLIENT);
-// Arrays.asList(advisorRole)
