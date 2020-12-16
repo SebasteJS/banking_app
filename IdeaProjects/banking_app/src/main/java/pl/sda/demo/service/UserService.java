@@ -12,6 +12,7 @@ import pl.sda.demo.repository.UserRepository;
 import pl.sda.demo.role.RoleType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -29,42 +30,45 @@ public class UserService {
                 .password(userDto.getPassword())
                 .roles(userDto.getRoles())
                 .build();
-
-        if (user1.getRoles().isEmpty()) {
-            for (Role role1 : user1.getRoles()) {
-
-                role1.setType(RoleType.CLIENT);
-            }
-        }
         UserRepository.save(user1);
         return UserRepository.save(user1).getId();
     }
 
     public List<UserDto> findAll() {
+
         List<UserDto> userDtoUser = new ArrayList<>();
         Iterable<User> users = UserRepository.findAll();
         for (User users2 : users) {
-
-            if (users2.getRoles().isEmpty()) {
-                for (Role role1 : users2.getRoles()) {
-
-                    role1.setType(RoleType.CLIENT);
-                }
-            }
-
             userDtoUser.add(
                     UserDto.builder()
                             .first_name(users2.getFirst_name())
                             .last_name(users2.getLast_name())
 //                            .login(users2.getLogin())
-//                            .password(users2.getPassword())
+//                            .password(users2.getPassword(
                             .roles(users2.getRoles())
                             .build());
-
-
         }
         return userDtoUser;
-
-
     }
 }
+
+
+
+
+//    if (UserRepository.user1.getRoles().isEmpty()) {
+//            for (Role role1 : user1.getRoles()) {
+//
+//                role1.setType(RoleType.CLIENT);
+//            }
+//        }
+
+//    if (UserRepository.user1.getRoles().isEmpty()) {
+//            for (Role role1 : user1.getRoles()) {
+//
+//                role1.setType(RoleType.CLIENT);
+//            }
+//        }
+
+
+//Role clientRole = roleRepository.findByType(RoleType.CLIENT);
+// Arrays.asList(advisorRole)

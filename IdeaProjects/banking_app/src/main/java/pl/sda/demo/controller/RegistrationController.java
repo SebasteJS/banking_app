@@ -38,7 +38,6 @@ public class RegistrationController {
             UserService.add(user2);
         }
             model.addAttribute("users", new UserDto());
-
         return "registration-form";
     }
 
