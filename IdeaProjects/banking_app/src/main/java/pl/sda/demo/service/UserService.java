@@ -2,12 +2,10 @@ package pl.sda.demo.service;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.sda.demo.exceptions.UserAlreadyExistsException;
+import pl.sda.demo.dto.UserDto;
 import pl.sda.demo.model.Role;
 import pl.sda.demo.model.User;
-import pl.sda.demo.dto.UserDto;
 import pl.sda.demo.role.RoleType;
 
 import java.util.ArrayList;
