@@ -36,7 +36,7 @@ public class UserService {
 
         List<User> lista = UserRepository.findAll();
         for (User user : lista) {
-            if (UserRepository.findUserByLogin(user.getLogin())) {
+            if (UserRepository.findUserByLogin(user.getLogin()) == user) {
                 throw new UserAlredyExistsException("User with given login already exists");
             }
         }
