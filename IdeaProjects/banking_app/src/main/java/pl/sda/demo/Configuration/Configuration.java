@@ -31,11 +31,9 @@ public class Configuration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
 
         http.formLogin()
-////                .loginPage("/login")// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
-////                .loginProcessingUrl("/appLogin")
+//              .loginPage("/login")//
+//                .loginProcessingUrl("/appLogin")
 //                .failureForwardUrl("/failure")
-//                .usernameParameter("login")
-//                .passwordParameter("pass")
                 .defaultSuccessUrl("/index", true);
 
         http.csrf().disable()

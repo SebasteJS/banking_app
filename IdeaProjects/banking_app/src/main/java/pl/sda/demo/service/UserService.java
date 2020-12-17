@@ -48,9 +48,7 @@ public class UserService {
                 .password(userDto.getPassword())
                 .roles(roles)
                 .build();
-
         UserRepository.save(user1);
-
         return user1.getId();
     }
 
