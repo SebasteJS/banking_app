@@ -4,6 +4,7 @@ package pl.sda.demo.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.sda.demo.exceptions.UserAlredyExistsException;
 import pl.sda.demo.model.Role;
 import pl.sda.demo.model.User;
 import pl.sda.demo.repository.RoleRepository;
@@ -13,6 +14,7 @@ import pl.sda.demo.role.RoleType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -24,12 +26,20 @@ public class UserService {
 
 
     public Long add(UserDto userDto) {
-        var roles = userDto.getRoles();
-        if(roles == null){
-            var role = new Role(RoleType.CLIENT);
+        List<Role> roles = userDto.getRoles();
+        if (roles == null) {
+            Role role = new Role(RoleType.CLIENT);
             RoleRepository.save(role);
-            roles = Arrays.asList(role);
+            roles = Collections.singletonList(role);
         }
+
+        List<User> lista = UserRepository.findAll();
+        for (User user : lista) {
+            if (UserRepository.findAll().contains(user)) {
+                throw new UserAlredyExistsException("User with given login already exists");
+            }
+        }
+
         User user1 = User.builder()
                 .first_name(userDto.getFirst_name())
                 .last_name(userDto.getLast_name())

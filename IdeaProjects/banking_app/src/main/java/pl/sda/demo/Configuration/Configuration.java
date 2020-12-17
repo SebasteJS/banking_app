@@ -33,10 +33,10 @@ public class Configuration extends WebSecurityConfigurerAdapter {
         http.formLogin()
 ////                .loginPage("/login")// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
 ////                .loginProcessingUrl("/appLogin")
-//                .failureForwardUrl("/failure") /// ???
+//                .failureForwardUrl("/failure")
 //                .usernameParameter("login")
 //                .passwordParameter("pass")
-                .defaultSuccessUrl("/index", true);///???
+                .defaultSuccessUrl("/index", true);
 
         http.csrf().disable()
                 .headers().frameOptions().disable();
@@ -71,10 +71,3 @@ public class Configuration extends WebSecurityConfigurerAdapter {
     }
 
 }
-
-//  .usersByUsernameQuery("SELECT u.login, u.password,1 FROM user AS u WHERE u.login=?")
-//                .authoritiesByUsernameQuery("SELECT u.login, r.typ_roli, 1 " +
-//                        "FROM user u " +
-//                        "INNER JOIN user_role ur ON ur.user_id = u.user_id " +
-//                        "INNER JOIN role r ON r.role_id = ur.role_id " +
-//                        "WHERE u.login=?")

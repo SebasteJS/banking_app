@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import pl.sda.demo.exceptions.UserAlredyExistsException;
 import pl.sda.demo.model.Role;
 import pl.sda.demo.model.User;
 import pl.sda.demo.repository.RoleRepository;
@@ -11,6 +12,7 @@ import pl.sda.demo.repository.UserRepository;
 import pl.sda.demo.role.RoleType;
 
 import java.util.Arrays;
+import java.util.List;
 
 
 @Component
@@ -28,6 +30,9 @@ public class Service implements CommandLineRunner {
         if (userRepository.findAll().size() != 0) {
             return;
         }
+
+
+
 
         Role userRole1 = new Role();
         userRole1.setType(RoleType.CLIENT);
