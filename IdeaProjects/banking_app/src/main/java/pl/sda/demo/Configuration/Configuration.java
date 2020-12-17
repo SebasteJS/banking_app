@@ -33,7 +33,7 @@ public class Configuration extends WebSecurityConfigurerAdapter {
         http.formLogin()
 //              .loginPage("/login")//
 //                .loginProcessingUrl("/appLogin")
-//                .failureForwardUrl("/failure") // dopisz ze tu ma byc login by wyjatek w razie podana istniejacego uzytkownika tu skierowal
+//                .failureForwardUrl("/failure") // dopisac ze tu ma byc login by w razie zduplikowania loginu tu skierowalp
                 .defaultSuccessUrl("/index", true);
 
         http.csrf().disable()

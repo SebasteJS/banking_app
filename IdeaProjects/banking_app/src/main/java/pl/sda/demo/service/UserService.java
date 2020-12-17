@@ -2,18 +2,15 @@ package pl.sda.demo.service;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.sda.demo.exceptions.UserAlredyExistsException;
+import pl.sda.demo.exceptions.UserAlreadyExistsException;
 import pl.sda.demo.model.Role;
 import pl.sda.demo.model.User;
-import pl.sda.demo.repository.RoleRepository;
 import pl.sda.demo.dto.UserDto;
-import pl.sda.demo.repository.UserRepository;
 import pl.sda.demo.role.RoleType;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,6 +20,7 @@ public class UserService {
 
     private final pl.sda.demo.repository.UserRepository UserRepository;
     private final pl.sda.demo.repository.RoleRepository RoleRepository;
+    private final org.springframework.security.crypto.password.PasswordEncoder PasswordEncoder;
 
 
     public Long add(UserDto userDto) {
@@ -32,20 +30,11 @@ public class UserService {
             RoleRepository.save(role);
             roles = Collections.singletonList(role);
         }
-
-
-        List<User> lista = UserRepository.findAll();
-        for (User user : lista) {
-            if (UserRepository.findUserByLogin(user.getLogin()) == user) {
-                throw new UserAlredyExistsException("User with given login already exists");
-            }
-        }
-
         User user1 = User.builder()
                 .first_name(userDto.getFirst_name())
                 .last_name(userDto.getLast_name())
                 .login(userDto.getLogin())
-                .password(userDto.getPassword())
+                .password(PasswordEncoder.encode(userDto.getPassword()))
                 .roles(roles)
                 .build();
         UserRepository.save(user1);
