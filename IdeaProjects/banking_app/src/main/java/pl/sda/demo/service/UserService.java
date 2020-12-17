@@ -33,9 +33,10 @@ public class UserService {
             roles = Collections.singletonList(role);
         }
 
+
         List<User> lista = UserRepository.findAll();
         for (User user : lista) {
-            if (UserRepository.findAll().contains(user)) {
+            if (UserRepository.findUserByLogin(user.getLogin())) {
                 throw new UserAlredyExistsException("User with given login already exists");
             }
         }
