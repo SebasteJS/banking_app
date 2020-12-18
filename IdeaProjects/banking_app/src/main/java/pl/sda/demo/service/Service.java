@@ -30,7 +30,6 @@ public class Service implements CommandLineRunner {
         }
 
 
-
         Role userRole1 = new Role();
         userRole1.setType(RoleType.CLIENT);
         roleRepository.save(userRole1);

@@ -19,22 +19,25 @@ public class Configuration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/advisor/**").access("hasRole('ROLE_ADVISOR')")
-                .antMatchers("/client/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
-                .antMatchers("/credit/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
-                .antMatchers("/client_Income/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
-                .antMatchers("/client_liabilities/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
+                .antMatchers("/advisor_panel").access("hasRole('ROLE_ADVISOR')")
+                .antMatchers("/broker").access("hasRole('ROLE_ADVISOR')")
+                .antMatchers("/client").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
+                .antMatchers("/credit").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
+                .antMatchers("/customer").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
+                .antMatchers("/clientIncome").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
+                .antMatchers("/clientLiabilities/").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
+//                .antMatchers("/clientLiabilities/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
 //                .antMatchers("/index").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
                 .antMatchers("/login*").permitAll()
                 .antMatchers("/regist*").permitAll()
-                .antMatchers("/users").permitAll()
+                .antMatchers("/users").permitAll()// zminic potem na admina
                 .anyRequest().authenticated();
 
         http.formLogin()
 //              .loginPage("/login")//
 //                .loginProcessingUrl("/appLogin")
-//                .failureForwardUrl("/failure") // dopisac ze tu ma byc login by w razie zduplikowania loginu tu skierowalo
-                .defaultSuccessUrl("/index", true);
+//                .failureForwardUrl("/failure") // dopisac ze tu ma byc login jesli nie uda sie zalogowa lub by w razie zduplikowania loginu skierowalo na regitration
+                .defaultSuccessUrl("/index", true);// zmienic na strone Justyny
 
         http.csrf().disable()
                 .headers().frameOptions().disable();

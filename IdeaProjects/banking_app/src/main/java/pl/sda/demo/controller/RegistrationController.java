@@ -13,6 +13,7 @@ import pl.sda.demo.service.UserService;
 import pl.sda.demo.dto.UserDto;
 
 import javax.validation.Valid;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Arrays;
 
 @Controller
@@ -37,6 +38,16 @@ public class RegistrationController {
         if (!bindingResult.hasErrors()) {
             UserService.add(user2);
         }
+
+//        try {
+//            if (!bindingResult.hasErrors()) {
+//                UserService.add(user2);
+//            }
+//        }catch (SQLIntegrityConstraintViolationException exception){
+//            System.out.println("wyjatek");
+//
+//        }
+
             model.addAttribute("users", new UserDto());
         return "registration-form";
     }
