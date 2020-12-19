@@ -7,14 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.sda.demo.model.Role;
-import pl.sda.demo.role.RoleType;
-import pl.sda.demo.service.UserService;
 import pl.sda.demo.dto.UserDto;
+import pl.sda.demo.service.UserService;
 
 import javax.validation.Valid;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.Arrays;
 
 @Controller
 @RequiredArgsConstructor
@@ -48,7 +44,7 @@ public class RegistrationController {
 //
 //        }
 
-            model.addAttribute("users", new UserDto());
+        model.addAttribute("users", new UserDto());
         return "registration-form";
     }
 

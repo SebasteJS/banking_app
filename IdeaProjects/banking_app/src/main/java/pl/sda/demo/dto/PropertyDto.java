@@ -18,6 +18,7 @@ public class PropertyDto {
     private double price;
 
     // albo rynek wtórny albo pierwotny
+
     private boolean isSecondaryMarket;
     private boolean isPrimaryMarket;
 
