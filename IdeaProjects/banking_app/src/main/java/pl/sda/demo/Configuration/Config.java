@@ -2,8 +2,10 @@ package pl.sda.demo.Configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,19 +13,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
-
+@Configuration
 @EnableWebSecurity
-public class Configuration extends WebSecurityConfigurerAdapter {
+public class Config extends WebSecurityConfigurerAdapter {
 
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/resources/**").permitAll()
                 .antMatchers("/advisor/**").access("hasRole('ROLE_ADVISOR')")
-                .antMatchers("/client/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
-                .antMatchers("/credit/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
-                .antMatchers("/client_Income/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
-                .antMatchers("/client_liabilities/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
+//                .antMatchers("/client/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
+//                .antMatchers("/credit/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
+//                .antMatchers("/client_Income/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
+//                .antMatchers("/client_liabilities/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
 //                .antMatchers("/index").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
                 .antMatchers("/login*").permitAll()
                 .antMatchers("/regist*").permitAll()
@@ -31,11 +34,11 @@ public class Configuration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
 
         http.formLogin()
-////                .loginPage("/login")// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
-////                .loginProcessingUrl("/appLogin")
-//                .failureForwardUrl("/failure") /// ???
-//                .usernameParameter("login")
-//                .passwordParameter("pass")
+                .loginPage("/login")// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
+
+                .loginProcessingUrl("/login")
+                .usernameParameter("login")
+                .passwordParameter("password")
                 .defaultSuccessUrl("/index", true);///???
 
         http.csrf().disable()
@@ -47,6 +50,12 @@ public class Configuration extends WebSecurityConfigurerAdapter {
 
     }
 
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/resources/**", "/css/**", "/js/**", "/img/**", "/icon/**");
+    }
 
     @Autowired
     private DataSource dataSource;
