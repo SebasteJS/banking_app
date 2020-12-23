@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista klientów</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color:#ADD8E6">
+
+
+<div class="container">
+    <br/>
+    <h3 class="h3">Klienci:</h3>
+    <table class="table table-bordered">
+        <tr class="table-striped">
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Numer telefonu</th>
+            <th>Email</th>
+            <th>Wiek</th>
+            <th>Dzieci</th>
+            <th>Status klienta</th>
+            <!--            <th>isCreditApplicationSubmitted</th>-->
+            <!--            <th>Czy proces kredytowy jest zakończony?</th>-->
+            <!--            <th>Czy klient jest nieaktywny?</th>-->
+        </tr>
+        <th:block th:each="customer : ${customers}">
+            <tr>
+                <td th:text="${customer.firstName}"></td>
+                <td th:text="${customer.lastName}"></td>
+                <td th:text="${customer.phone}"></td>
+                <td th:text="${customer.email}"></td>
+                <td th:text="${customer.age}"></td>
+                <td th:text="${customer.kids}"></td>
+                <td th:text="${customer.isProspect}"></td>
+                <!--                <td th:text="${customer.isCreditApplicationSubmitted}"></td>-->
+                <!--                <td th:text="${customer.isCreditFinished}"></td>-->
+                <!--                <td th:text="${customer.isInactive}"></td>-->
+            </tr>
+        </th:block>
+    </table>
+
+    <div>
+        <input type="button" value="Dodaj nowego klienta" onclick="$('#addCustomerDiv').toggle()"
+               class="btn btn-success"/>
+
+    </div>
+
+    <br/>
+    <div id="addCustomerDiv">
+        <form class="form-horizontal" method="post"  th:action="@{/customers/add}" th:object="${customer}">
+            <fieldset>
+                <div id="legend">
+                    <legend class="">Wprowadź dane nowego klienta</legend>
+                </div>
+                <div class="control-group">
+                    <!-- First name -->
+                    <label class="control-label"  for="firstName">Imię</label>
+                    <div class="controls">
+                        <input type="text" id="firstName" name="firstName" placeholder="" class="input-xlarge" th:field="*{firstName}">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- Last name -->
+                    <label class="control-label" for="lastName">Nazwisko</label>
+                    <div class="controls">
+                        <input type="text" id="lastName" name="lastName" placeholder="" class="input-xlarge" th:field="*{lastName}">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- Phone -->
+                    <label class="control-label" for="phone">Numer telefonu</label>
+                    <div class="controls">
+                        <input type="number" id="phone" name="phone" placeholder="+48 123 456 789" class="input-xlarge" th:field="*{phone}">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <!-- Email -->
+                    <label class="control-label"  for="email">Email</label>
+                    <div class="controls">
+                        <input type="text" id="email" name="email" placeholder="nazwa@przykład.pl" class="input-xlarge" th:field="*{email}">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- Age -->
+                    <label class="control-label" for="age">Wiek</label>
+                    <div class="controls">
+                        <input type="number" id="age" name="age" placeholder="" class="input-xlarge" th:field="*{age}">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- Kids -->
+                    <label class="control-label" for="kids">Dzieci</label>
+                    <div class="controls">
+                        <input type="number" id="kids" name="kids" placeholder="" class="input-xlarge" th:field="*{kids}">
+                    </div>
+                </div>
+
+                <div class="control-group">
+
+
+                    <!--                    </div>-->
+                    <div class="form-group">
+                        <label> Status klienta<br/>
+                            <select id="isProspect" name="isProspect">
+                                <option value="true">Oczekujący</option>
+                                <option value="false">Wniosek złożony</option>
+                                <option value="false">Kredyt wypłacony</option>
+                                <option value="false">Nieaktywny</option>
+
+                            </select>
+                        </label></br>
+                    </div>
+
+                    <!--                        <form class="form-horizontal" method="post"  th:action="@{/customers/add}" th:object="${customerIncome}">-->
+                    <!--                            <fieldset>-->
+                    <!--                                <div class="control-group">-->
+                    <!--                                    &lt;!&ndash; Income netto &ndash;&gt;-->
+                    <!--                                    <label class="control-label"  for="netIncome">Dochód netto</label>-->
+                    <!--                                    <div class="controls">-->
+                    <!--                                        <input type="number" id="netIncome" name="netIncome" placeholder="" class="input-xlarge" th:field="*{netIncome}">-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                                <div class="form-group">-->
+                    <!--                                    <label> Umowa na czas nieokreślony-->
+                    <!--                                        <select id="isIndefiniteContract" name="isIndefiniteContract">-->
+                    <!--                                            <option value="true">Tak</option>-->
+                    <!--                                            <option value="false">Nie</option>-->
+                    <!--                                        </select>-->
+                    <!--                                    </label></br>-->
+                    <!--                                </div>-->
+                    <!--                                <div class="form-group">-->
+                    <!--                                    <label> Własne przedsiębiorstwo-->
+                    <!--                                        <select id="isSelfEmployed" name="isSelfEmployed">-->
+                    <!--                                            <option value="true">Tak</option>-->
+                    <!--                                            <option value="false">Nie</option>-->
+                    <!--                                        </select>-->
+                    <!--                                    </label></br>-->
+                    <!--                                </div>-->
+                    <!--                                <div class="form-group">-->
+                    <!--                                    <label> Forma rozliczenia-->
+                    <!--                                        <select id="isKpir" name="isKpir">-->
+                    <!--                                            <option value="true">Kpir</option>-->
+                    <!--                                            <option value="false">Ryczałt</option>-->
+                    <!--                                            <option value="false">Karta podatkowa</option>-->
+                    <!--                                        </select>-->
+                    <!--                                    </label></br>-->
+                    <!--                                </div>-->
+
+
+
+
+                    <div class="control-group">
+                        <!-- Button -->
+                        <div class="controls">
+                            <button class="btn btn-success">Zatwierdź dane i przejdź dalej</button>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+        <!--        </div>-->
+        <!--    </div>-->
+    </div>
+</body>
