@@ -1,21 +1,39 @@
 package pl.sda.demo.controller;
 
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.sda.demo.dto.BrokerDto;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.sda.demo.dto.CustomerDto;
+import pl.sda.demo.model.Customer;
+import pl.sda.demo.service.CustomerService;
 
-import javax.validation.Valid;
 
 @Controller
+@RequestMapping("/customers")
+
 @RequiredArgsConstructor
 public class CustomerController {
+
+    private final CustomerService customerService;
+
+    @GetMapping
+    public String customers(Model model) {
+        model.addAttribute("customers", customerService.list());
+        model.addAttribute("customer", Customer.builder().build());
+        return "customers";
+    }
+
+    @PostMapping("/add")
+    public String addCustomer(@ModelAttribute("customer") Customer customer, Model model) {
+        customerService.add(customer);
+        model.addAttribute("customers", customerService.list());
+        return "customers";
+    }
 
 
 }

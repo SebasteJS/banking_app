@@ -39,6 +39,11 @@ public class Configuration extends WebSecurityConfigurerAdapter {
 //                .failureForwardUrl("/failure") // dopisac ze tu ma byc login jesli nie uda sie zalogowa lub by w razie zduplikowania loginu skierowalo na regitration
                 .defaultSuccessUrl("/index", true);// zmienic na strone Justyny
 
+
+
+        http.formLogin()
+                .defaultSuccessUrl("/index", true);///???
+
         http.csrf().disable()
                 .headers().frameOptions().disable();
 
@@ -70,5 +75,5 @@ public class Configuration extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }
+

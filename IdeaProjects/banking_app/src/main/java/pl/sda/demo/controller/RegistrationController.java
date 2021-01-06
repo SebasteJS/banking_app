@@ -26,9 +26,6 @@ public class RegistrationController {
         return "registration-form";
     }
 
-
-
-
     @PostMapping("/registration")
     public String registrationAdding(Model model, @ModelAttribute("user") @Valid UserDto user2, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {

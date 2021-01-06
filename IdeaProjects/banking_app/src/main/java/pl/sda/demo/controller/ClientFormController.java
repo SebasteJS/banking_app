@@ -5,14 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class FinancialAdvisorController {
+public class ClientFormController {
 
-    @Secured("ROLE_ADVISOR")
-    @GetMapping("/advisor_panel")
-        public String mainPage () {
-            return "advisor-panel";
-        }
-
+    @Secured({"ROLE_ADVISOR", "CLIENT"})
+    @GetMapping("/client")
+    public String login() {
+        return "client";
     }
-
-
+}

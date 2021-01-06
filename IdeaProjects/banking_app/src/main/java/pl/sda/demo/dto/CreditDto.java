@@ -18,7 +18,7 @@ public class CreditDto {
     private Long id;
 
     @NotEmpty
-    private double loanAmmount;
+    private double loanAmount;
 
     @NotEmpty
     @Min(5)

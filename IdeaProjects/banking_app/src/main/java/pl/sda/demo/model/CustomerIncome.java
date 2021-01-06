@@ -39,3 +39,4 @@ public class CustomerIncome {
     private Customer customer;
 
 }
+

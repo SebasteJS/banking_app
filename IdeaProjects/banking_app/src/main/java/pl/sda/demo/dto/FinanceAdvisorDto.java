@@ -4,9 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Data
@@ -17,8 +18,7 @@ public class FinanceAdvisorDto {
 
     private Long id;
 
-    @NotEmpty
-    private String firstName;
+
 
     @NotEmpty
     private String lastName;
@@ -29,5 +29,8 @@ public class FinanceAdvisorDto {
 
     @NotEmpty
     @Size(min = 5, message = "password must be at least 9 characters long")
+    private String firstName;
+
+
     private String password;
 }

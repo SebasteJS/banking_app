@@ -53,7 +53,6 @@ public class Customer {
     @Column(name = "customer_status")
     private String customerStatus;
 
-
     @ManyToOne
     private FinanceAdvisor financeAdvisor;
 

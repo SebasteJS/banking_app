@@ -22,10 +22,10 @@ public class PropertyDto {
     private boolean isPrimaryMarket;
 
     // albo własność albo spółdzielcze własnościowe
-    private boolean isOwnership;
+    private String isOwnership;
+
 
     // albo mieszkanie albo dom
-
-    private boolean isFlat;
+    private String isFlat;
 
 }

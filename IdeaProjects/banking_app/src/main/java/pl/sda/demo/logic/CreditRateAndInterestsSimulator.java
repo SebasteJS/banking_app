@@ -1,7 +1,9 @@
 package pl.sda.demo.logic;
 
+import org.springframework.stereotype.Service;
 import pl.sda.demo.model.Credit;
 
+@Service
 public class CreditRateAndInterestsSimulator {
 
     InterestsCalculator interestsCalculator = new InterestsCalculator();

@@ -29,3 +29,4 @@ public class CustomerIncomeDto {
     @NotEmpty
     private String formOfSettlement;
 }
+
