@@ -26,11 +26,11 @@ public class Configuration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/customer").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
                 .antMatchers("/clientIncome").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
                 .antMatchers("/clientLiabilities/").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
-//                .antMatchers("/clientLiabilities/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
-//                .antMatchers("/index").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
+                .antMatchers("/clientLiabilities/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")//
+                .antMatchers("/index").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT') or hasRole('ROLE_ADMIN')")//
                 .antMatchers("/login*").permitAll()
                 .antMatchers("/regist*").permitAll()
-                .antMatchers("/users").permitAll()// zminic potem na admina
+                .antMatchers("/users").access("hasRole('ROLE_ADMIN')")
                 .anyRequest().authenticated();
 
         http.formLogin()
