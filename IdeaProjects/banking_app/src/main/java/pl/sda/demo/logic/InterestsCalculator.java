@@ -4,12 +4,20 @@ public class InterestsCalculator {
 
     MonthlyRateCalculation monthlyRateCalculation = new MonthlyRateCalculation();
 
-    double capitalLeft;
-    double monthlyRate;
-    double monthyIntrest;
-    double montlyCapital;
-    double sumOfIntrests;
-    double sumOfCapitalRates;
+    private double capitalLeft;
+    private double monthlyRate;
+    private double monthyIntrest;
+    private double montlyCapital;
+    private double sumOfIntrests;
+    private double sumOfCapitalRates;
+
+    public double getMonthlyRate() {
+        return monthlyRate;
+    }
+
+    public double getSumOfIntrests() {
+        return sumOfIntrests;
+    }
 
     public void calculateCredit(double creditValue, int years, double monthlyIntrestRate) {
         monthlyRate = monthlyRateCalculation.calculateMonthlyRate(creditValue, years, monthlyIntrestRate);
@@ -37,5 +45,9 @@ public class InterestsCalculator {
     public void printInfo(){
         System.out.println("Wysokość miesięcznej raty: " + monthlyRate);
         System.out.println("Suma odsetek: " + sumOfIntrests);
+    }
+
+    public double getSumOfCapitalRates() {
+        return sumOfCapitalRates;
     }
 }

@@ -24,11 +24,21 @@ public class DemoApplication {
         credit1.setInterestRate(3);
         CreditRateAndInterestsSimulator simulator = new CreditRateAndInterestsSimulator();
 
-        simulator.setTerm(credit1);
+        simulator.calculateAll(credit1);
+        simulator.showInfo();
 
-        simulator.calculateCredit1(credit1);
-        simulator.calculateCredit2(credit1);
-        simulator.calculateCredit3(credit1);
+
+//        simulator.setTerm(credit1);
+//
+//        double monthlyRate1 = simulator.term1MonthlyRate1(credit1);
+//        double monthlyRate2 = simulator.term1MonthlyRate2(credit1);
+//        double monthlyRate3 = simulator.term1MonthlyRate3(credit1);
+//
+//        System.out.println(monthlyRate1);
+
+//        simulator.calculateCredit1(credit1);
+//        simulator.calculateCredit2(credit1);
+//        simulator.calculateCredit3(credit1);
     }
 // comment
 }
