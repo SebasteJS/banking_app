@@ -24,12 +24,9 @@ public class PropertyService {
     public Long add(PropertyDto propertyDto) {
         Property property1 = Property.builder()
                 .price(propertyDto.getPrice())
-                .isSecondaryMarket(propertyDto.isSecondaryMarket())
                 .isPrimaryMarket(propertyDto.isPrimaryMarket())
                 .isOwnership(propertyDto.isOwnership())
-                .isCooperativeOwnership(propertyDto.isCooperativeOwnership())
                 .isFlat(propertyDto.isFlat())
-                .isHouse(propertyDto.isHouse())
                 .build();
         propertyRepository.save(property1);
         return propertyRepository.save(property1).getId();
@@ -42,12 +39,9 @@ public class PropertyService {
             propertyDtoUser.add(
                     PropertyDto.builder()
                             .price(properties2.getPrice())
-                            .isSecondaryMarket(properties2.isSecondaryMarket())
                             .isPrimaryMarket(properties2.isPrimaryMarket())
                             .isOwnership(properties2.isOwnership())
-                            .isCooperativeOwnership(properties2.isCooperativeOwnership())
                             .isFlat(properties2.isFlat())
-                            .isHouse(properties2.isHouse())
                             .build());
         }
         return propertyDtoUser;

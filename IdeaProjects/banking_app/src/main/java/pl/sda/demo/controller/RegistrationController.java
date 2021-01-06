@@ -35,15 +35,6 @@ public class RegistrationController {
             UserService.add(user2);
         }
 
-//        try {
-//            if (!bindingResult.hasErrors()) {
-//                UserService.add(user2);
-//            }
-//        }catch (SQLIntegrityConstraintViolationException exception){
-//            System.out.println("wyjatek");
-//
-//        }
-
         model.addAttribute("users", new UserDto());
         return "registration-form";
     }

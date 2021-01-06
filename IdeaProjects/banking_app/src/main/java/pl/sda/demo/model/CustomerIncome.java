@@ -30,12 +30,9 @@ public class CustomerIncome {
     // if true wtedy czy kpir, karta, ryczałt
 
     //albo kpir, ryczalt karta podatkowa
+
     @Column
-    private boolean isKpir;
-    @Column
-    private boolean isRyczalt;
-    @Column
-    private boolean isKartaPodatkowa;
+    private String formOfSettlement;
 
     @OneToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")

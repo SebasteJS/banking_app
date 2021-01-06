@@ -26,9 +26,6 @@ public class CustomerIncomeService {
                 .netIncome(customerIncomeDto.getNetIncome())
                 .isIndefiniteContract(customerIncomeDto.isIndefiniteContract())
                 .isSelfEmployed(customerIncomeDto.isSelfEmployed())
-                .isKpir(customerIncomeDto.isKpir())
-                .isRyczalt(customerIncomeDto.isRyczalt())
-                .isKartaPodatkowa(customerIncomeDto.isKartaPodatkowa())
                 .build();
         CustomerIncomeRepository.save(customerIncome1);
         return CustomerIncomeRepository.save(customerIncome1).getId();
@@ -43,9 +40,6 @@ public class CustomerIncomeService {
                             .netIncome(customerIncomes2.getNetIncome())
                             .isIndefiniteContract(customerIncomes2.isIndefiniteContract())
                             .isSelfEmployed(customerIncomes2.isSelfEmployed())
-                            .isKpir(customerIncomes2.isKpir())
-                            .isRyczalt(customerIncomes2.isRyczalt())
-                            .isKartaPodatkowa(customerIncomes2.isKartaPodatkowa())
                             .build());
         }
         return CustomerIncomeDtoUser;

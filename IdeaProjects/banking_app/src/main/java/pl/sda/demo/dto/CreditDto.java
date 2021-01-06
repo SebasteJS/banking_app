@@ -24,4 +24,7 @@ public class CreditDto {
     @Min(5)
     @Max(30)
     private int creditPeriod;
+
+
+
 }

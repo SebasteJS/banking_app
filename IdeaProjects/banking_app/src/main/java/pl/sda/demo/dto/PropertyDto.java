@@ -19,15 +19,13 @@ public class PropertyDto {
 
     // albo rynek wtórny albo pierwotny
 
-    private boolean isSecondaryMarket;
     private boolean isPrimaryMarket;
 
     // albo własność albo spółdzielcze własnościowe
     private boolean isOwnership;
-    private boolean isCooperativeOwnership;
 
     // albo mieszkanie albo dom
 
     private boolean isFlat;
-    private boolean isHouse;
+
 }

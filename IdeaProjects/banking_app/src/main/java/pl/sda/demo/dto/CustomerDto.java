@@ -29,6 +29,8 @@ public class CustomerDto {
     @Email
     private String email;
 
+
+
     @NotEmpty
     @Min(16)
     @Max(80)
@@ -39,12 +41,7 @@ public class CustomerDto {
     private int kids;
 
     // 1
-    private boolean isProspect;
-    // 2
-    private boolean isCreditApplicationSubmitted;
-    // 3
-    private boolean isCreditFinshed;
-    // 4
-    private boolean isInactive;
+    @NotEmpty
+    private String customerStatus;
 
 }

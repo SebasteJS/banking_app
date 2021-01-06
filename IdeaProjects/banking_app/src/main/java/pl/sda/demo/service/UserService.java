@@ -11,6 +11,7 @@ import pl.sda.demo.role.RoleType;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.TreeSet;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +28,8 @@ public class UserService {
             Role role = new Role(RoleType.CLIENT);
             RoleRepository.save(role);
             roles = Collections.singletonList(role);
+
+
         }
         User user1 = User.builder()
                 .first_name(userDto.getFirst_name())
@@ -35,13 +38,14 @@ public class UserService {
                 .password(PasswordEncoder.encode(userDto.getPassword()))
                 .roles(roles)
                 .build();
+
         UserRepository.save(user1);
         return user1.getId();
     }
 
     public List<UserDto> findAll() {
 
-        List<UserDto> userDtoUser = new ArrayList<>();
+        List<UserDto> userDtoUser = new ArrayList<>(); // zmienic moze z ArrayList na TreeSet bo TreeSet nie moze miec powtarzajacych sie obiketow
         Iterable<User> users = UserRepository.findAll();
         for (User users2 : users) {
             userDtoUser.add(
@@ -49,9 +53,10 @@ public class UserService {
                             .first_name(users2.getFirst_name())
                             .last_name(users2.getLast_name())
 //                            .login(users2.getLogin())
-//                            .password(users2.getPassword(
+//                            .password(users2.getPassword())
                             .roles(users2.getRoles())
                             .build());
+
         }
         return userDtoUser;
     }

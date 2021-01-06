@@ -50,17 +50,9 @@ public class Customer {
     // 3. kredyt wypłacony 4. nieaktywny
 
     // 1
-    @Column(name = "prospect")
-    private boolean isProspect;
-    // 2
-    @Column(name = "credit_application_submitted")
-    private boolean isCreditApplicationSubmitted;
-    // 3
-    @Column(name = "credit_finished")
-    private boolean isCreditFinshed;
-    // 4
-    @Column(name = "inactive")
-    private boolean isInactive;
+    @Column(name = "customer_status")
+    private String customerStatus;
+
 
     @ManyToOne
     private FinanceAdvisor financeAdvisor;

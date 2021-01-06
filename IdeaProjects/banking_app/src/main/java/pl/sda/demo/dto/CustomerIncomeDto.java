@@ -27,9 +27,5 @@ public class CustomerIncomeDto {
 
     //albo kpir, ryczalt karta podatkowa
     @NotEmpty
-    private boolean isKpir;
-    @NotEmpty
-    private boolean isRyczalt;
-    @NotEmpty
-    private boolean isKartaPodatkowa;
+    private String formOfSettlement;
 }

@@ -16,25 +16,25 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class CreditController {
 
-//    private final pl.sda.demo.service.CreditService CreditService;
-//
-//    @Secured({"ROLE_ADVISOR"})
-//    @GetMapping("/credit")
-//    public String credit(Model model) {
-//        model.addAttribute("credits", CreditService.findAll());
-//        model.addAttribute("credit", CreditDto.builder().build());
-//        return "credit";
-//    }
-//
-//
-//    @Secured({"ROLE_ADVISOR", "CLIENT"})
-//    @PostMapping("/credit")
-//    public String creditAdding(Model model, @ModelAttribute("credit") @Valid CreditDto user2, BindingResult bindingResult) {
-//        if (!bindingResult.hasErrors()) {
-//            CreditService.add(user2);
-//        }
-//        model.addAttribute("credits", new CreditDto());
-//
-//        return "credit";
-//    }
+    private final pl.sda.demo.service.CreditService CreditService;
+
+    @Secured({"ROLE_ADVISOR"})
+    @GetMapping("/credit")
+    public String credit(Model model) {
+        model.addAttribute("credits", CreditService.findAll());
+        model.addAttribute("credit", CreditDto.builder().build());
+        return "credit";
+    }
+
+
+    @Secured({"ROLE_ADVISOR", "CLIENT"})
+    @PostMapping("/credit")
+    public String creditAdding(Model model, @ModelAttribute("credit") @Valid CreditDto user2, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
+            CreditService.add(user2);
+        }
+        model.addAttribute("credits", new CreditDto());
+
+        return "credit";
+    }
 }
