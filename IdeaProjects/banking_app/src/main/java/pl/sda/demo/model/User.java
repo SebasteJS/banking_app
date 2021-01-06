@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
+import pl.sda.demo.dto.UserDto;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,11 +14,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 @Entity
 @Builder
 @Table(name = "User")
-public class User {
+public class User  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,7 +30,7 @@ public class User {
     @Column(name = "last_name")
     private String last_name;
 
-    @Column(name = "login")
+    @Column(name = "login", unique = true)
     private String login;
 
     @Column(name = "password")
@@ -38,8 +39,4 @@ public class User {
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private List<Role> roles;
-
-
-
-
 }

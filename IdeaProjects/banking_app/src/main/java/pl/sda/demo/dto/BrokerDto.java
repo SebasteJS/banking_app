@@ -1,16 +1,20 @@
 package pl.sda.demo.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class BrokerDto {
 
     private Long id;
@@ -29,5 +33,6 @@ public class BrokerDto {
     private String phone;
 
     @Column
+    @Email
     private String email;
 }

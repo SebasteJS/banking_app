@@ -1,17 +1,16 @@
 package pl.sda.demo.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class CustomerDto {
 
     private Long id;
@@ -27,7 +26,10 @@ public class CustomerDto {
     private String phone;
 
     @NotEmpty
+    @Email
     private String email;
+
+
 
     @NotEmpty
     @Min(16)
@@ -39,12 +41,7 @@ public class CustomerDto {
     private int kids;
 
     // 1
-    private boolean isProspect;
-    // 2
-    private boolean isCreditApplicationSubmitted;
-    // 3
-    private boolean isCreditFinshed;
-    // 4
-    private boolean isInactive;
+    @NotEmpty
+    private String customerStatus;
 
 }

@@ -7,8 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.sda.demo.service.UserService;
 import pl.sda.demo.dto.UserDto;
+import pl.sda.demo.service.UserService;
 
 import javax.validation.Valid;
 
@@ -21,10 +21,12 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registration(Model model) {
-        model.addAttribute("users",UserService.findAll());
+        model.addAttribute("users", UserService.findAll());
         model.addAttribute("user", UserDto.builder().build());
         return "registration-form";
     }
+
+
 
 
     @PostMapping("/registration")

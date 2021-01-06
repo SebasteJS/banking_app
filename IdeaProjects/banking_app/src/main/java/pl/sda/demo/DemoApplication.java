@@ -40,5 +40,4 @@ public class DemoApplication {
 //        simulator.calculateCredit2(credit1);
 //        simulator.calculateCredit3(credit1);
     }
-// comment
 }

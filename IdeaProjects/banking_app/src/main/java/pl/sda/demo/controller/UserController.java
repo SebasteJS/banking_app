@@ -1,6 +1,7 @@
 package pl.sda.demo.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,7 @@ public class UserController {
 
     private final pl.sda.demo.service.UserService UserService;
 
-
+    @Secured("ROLE_ADMIN")
     @GetMapping("/users")
     public String users(Model model) {
         model.addAttribute("users", UserService.findAll());

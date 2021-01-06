@@ -1,6 +1,7 @@
 package pl.sda.demo.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Builder
 @Entity
 @Table(name = "customer_income")
 public class CustomerIncome {
@@ -29,12 +30,9 @@ public class CustomerIncome {
     // if true wtedy czy kpir, karta, ryczałt
 
     //albo kpir, ryczalt karta podatkowa
+
     @Column
-    private boolean isKpir;
-    @Column
-    private boolean isRyczalt;
-    @Column
-    private boolean isKartaPodatkowa;
+    private String formOfSettlement;
 
     @OneToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")

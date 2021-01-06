@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
 import pl.sda.demo.model.Role;
+import pl.sda.demo.model.User;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -34,4 +36,11 @@ public class UserDto implements Serializable {
     private String password;
 
     private List<Role> roles;
+
+
+//    @Override
+//    public int compareTo(UserDto o) {
+//        return login.compareTo(o.getLogin());
+//    }
+
 }
