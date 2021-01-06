@@ -26,5 +26,7 @@ public class CreditDto {
     private int creditPeriod;
 
 
+    @NotEmpty
+    private double interestRate;
 
 }

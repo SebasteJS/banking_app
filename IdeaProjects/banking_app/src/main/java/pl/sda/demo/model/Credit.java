@@ -25,6 +25,9 @@ public class Credit {
     @Column
     private int creditPeriod;
 
+    @Column
+    private double interestRate;
+
     @OneToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
