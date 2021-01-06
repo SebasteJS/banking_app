@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista klientów</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color:#ADD8E6">
+
+
+<div class="container">
+    <br/>
+    <h3 class="h3">Klienci:</h3>
+    <table class="table table-bordered">
+        <tr class="table-striped">
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Numer telefonu</th>
+            <th>Email</th>
+            <th>Wiek</th>
+            <th>Dzieci</th>
+            <th>Status klienta</th>
+            <th>Przychód netto</th>
+            <th>Umowa na stałe</th>
+            <th>Samozatrudnienie</th>
+            <th>Forma rozliczenia</th>
+            <th>Karty kredytowe</th>
+            <th>Wysokość debetu</th>
+            <th>Dodatek na dzieci</th>
+            <th>Cena nieruchomości</th>
+            <th>Rynek pierwotny</th>
+            <th>Prawo własności</th>
+            <th>Typ nieruchomości</th>
+            <th>Wysokość kredytu</th>
+            <th>Okres kredytowania</th>
+        </tr>
+        <th:block th:each="customer : ${customers}">
+            <tr>
+                <td th:text="${customer.firstName}"></td>
+                <td th:text="${customer.lastName}"></td>
+                <td th:text="${customer.phone}"></td>
+                <td th:text="${customer.email}"></td>
+                <td th:text="${customer.age}"></td>
+                <td th:text="${customer.kids}"></td>
+                <td th:text="${customer.customerStatus}"></td>
+                <td th:text="${customer.customerIncome.netIncome}"></td>
+                <td th:text="${customer.customerIncome.isIndefiniteContract}"></td>
+                <td th:text="${customer.customerIncome.isSelfEmployed}"></td>
+                <td th:text="${customer.customerIncome.formOfSettlement}"></td>
+                <td th:text="${customer.customerLiabilities.creditCards}"></td>
+                <td th:text="${customer.customerLiabilities.accountDebt}"></td>
+                <td th:text="${customer.customerLiabilities.childSupport}"></td>
+                <td th:text="${customer.property.price}"></td>
+                <td th:text="${customer.property.isPrimaryMarket}"></td>
+                <td th:text="${customer.property.isOwnership}"></td>
+                <td th:text="${customer.property.isFlat}"></td>
+                <td th:text="${customer.credit.loanAmmount}"></td>
+                <td th:text="${customer.credit.creditPeriod}"></td>
+
+
+            </tr>
+        </th:block>
+    </table>
+
+    <div>
+        <input type="button" value="Dodaj nowego klienta" onclick="$('#addCustomerDiv').toggle()"
+               class="btn btn-success"/>
+
+    </div>
+
+    <br/>
+    <div id="addCustomerDiv">
+        <form class="form-horizontal" method="post"  th:action="@{/customers/add}" th:object="${customer}">
+            <fieldset>
+                <div id="legend">
+                    <legend class="">Wprowadź dane nowego klienta</legend>
+                </div>
+                <div class="control-group">
+                    <!-- First name -->
+                    <label class="control-label"  for="firstName">Imię</label>
+                    <div class="controls">
+                        <input type="text" id="firstName" name="firstName" placeholder="" class="input-xlarge" th:field="*{firstName}">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- Last name -->
+                    <label class="control-label" for="lastName">Nazwisko</label>
+                    <div class="controls">
+                        <input type="text" id="lastName" name="lastName" placeholder="" class="input-xlarge" th:field="*{lastName}">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- Phone -->
+                    <label class="control-label" for="phone">Numer telefonu</label>
+                    <div class="controls">
+                        <input type="number" id="phone" name="phone" placeholder="+48 123 456 789" class="input-xlarge" th:field="*{phone}">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <!-- Email -->
+                    <label class="control-label"  for="email">Email</label>
+                    <div class="controls">
+                        <input type="text" id="email" name="email" placeholder="nazwa@przykład.pl" class="input-xlarge" th:field="*{email}">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- Age -->
+                    <label class="control-label" for="age">Wiek</label>
+                    <div class="controls">
+                        <input type="number" id="age" name="age" placeholder="" class="input-xlarge" th:field="*{age}">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- Kids -->
+                    <label class="control-label" for="kids">Dzieci</label>
+                    <div class="controls">
+                        <input type="number" id="kids" name="kids" placeholder="" class="input-xlarge" th:field="*{kids}">
+                    </div>
+                </div>
+
+                <div class="control-group">
+
+
+                    <!--                    </div>-->
+                    <div class="form-group">
+                        <label> Status klienta<br/>
+                            <select id="customerStatus" name="customerStatus">
+                                <option value="Oczekujący">Oczekujący</option>
+                                <option value="Wniosek złożony">Wniosek złożony</option>
+                                <option value="Kredyt wypłacony">Kredyt wypłacony</option>
+                                <option value="Nieaktywny">Nieaktywny</option>
+
+                            </select>
+                        </label></br>
+                    </div>
+                    <div class="control-group">
+                        <!-- NetIncome -->
+                        <label class="control-label" for="customerIncome.netIncome">Przychód netto</label>
+                        <div class="controls">
+                            <input type="number" id="customerIncome.netIncome" name="customerIncome.netIncome" placeholder="" class="input-xlarge" th:field="*{customerIncome.netIncome}">
+                            PLN   </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="form-group">
+                            <label> Samozatrudnienie<br/>
+                                <select id="customerIncome.isIndefiniteContract" name="customerIncome.isIndefiniteContract">
+                                    <option value="true">Tak</option>
+                                    <option value="false">Nie</option>
+
+                                </select>
+                            </label></br>
+                        </div>
+                        <div class="form-group">
+                            <label> Forma rozliczenia<br/>
+                                <select id="customerIncome.formOfSettlement" name="customerIncome.formOfSettlement">
+                                    <option value="-">Nie dotyczy</option>
+                                    <option value="KPIR">KPIR</option>
+                                    <option value="Ryczałt">Ryczałt</option>
+                                    <option value="Karta podatkowa">Karta podatkowa</option>
+
+
+                                </select>
+                            </label></br>
+                        </div>
+                        <div class="control-group">
+                            <!-- creditCards -->
+                            <label class="control-label" for="customerLiabilities.creditCards">Karty kredytowe</label>
+                            <div class="controls">
+                                <input type="number" id="customerLiabilities.creditCards" name="customerLiabilities.creditCards" placeholder="" class="input-xlarge" th:field="*{customerLiabilities.creditCards}">
+                                PLN    </div>
+                        </div>
+                        <div class="control-group">
+                            <!-- Debet -->
+                            <label class="control-label" for="customerLiabilities.accountDebt">Wysokość debetu</label>
+                            <div class="controls">
+                                <input type="number" id="customerLiabilities.accountDebt" name="customerLiabilities.accountDebt" placeholder="" class="input-xlarge" th:field="*{customerLiabilities.accountDebt}">
+                                PLN </div>
+                        </div>
+                        <div class="control-group">
+                            <!-- Child Support -->
+                            <label class="control-label" for="customerLiabilities.childSupport">Dodatek na dzieci</label>
+                            <div class="controls">
+                                <input type="number" id="customerLiabilities.childSupport" name="customerLiabilities.childSupport" placeholder="" class="input-xlarge" th:field="*{customerLiabilities.childSupport}">
+                                PLN  </div>
+                        </div>
+                        <div class="control-group">
+                            <!-- Property price -->
+                            <label class="control-label" for="property.price">Cena nieruchomości</label>
+                            <div class="controls">
+                                <input type="number" id="property.price" name="property.price" placeholder="" class="input-xlarge" th:field="*{property.price}">
+                                PLN   </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-group">
+                                <label> Rynek pierwotny<br/>
+                                    <select id="property.isFlat" name="property.isFlat">
+                                        <option value="Mieszkanie">Mieszkanie</option>
+                                        <option value="Dom">Dom</option>
+
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label> Prawo własności<br/>
+                                    <select id="property.isOwnership" name="property.isOwnership">
+                                        <option value="Własnościowe">Własnościowe</option>
+                                        <option value="Spółdzielcze własnościowe">Spółdzielcze własnościowe</option>
+
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group">
+                                    <label> Typ nieruchomości<br/>
+                                        <select id="property.isPrimaryMarket" name="property.isPrimaryMarket">
+                                            <option value="true">Tak</option>
+                                            <option value="false">Nie</option>
+
+                                        </select>
+                                    </label>
+                                </div>
+                            <div class="control-group">
+                                <!-- Loan amount -->
+                                <label class="control-label" for="credit.loanAmmount">Wysokość kredytu</label>
+                                <div class="controls">
+                                    <input type="number" id="credit.loanAmmount" name="credit.loanAmmount" placeholder="" class="input-xlarge" th:field="*{credit.loanAmmount}">
+                                    PLN   </div>
+                            </div>
+                            <div class="control-group">
+                                <!-- Credit period -->
+                                <label class="control-label" for="credit.creditPeriod">Okres kredytowania</label>
+                                <div class="controls">
+                                    <input type="number" id="credit.creditPeriod" name="credit.creditPeriod" placeholder="" class="input-xlarge" th:field="*{credit.creditPeriod}">
+                                    lat   <br/></div>
+                            </div>
+                    <!--                        <form class="form-horizontal" method="post"  th:action="@{/customers/add}" th:object="${customerIncome}">-->
+                    <!--                            <fieldset>-->
+                    <!--                                <div class="control-group">-->
+                    <!--                                    &lt;!&ndash; Income netto &ndash;&gt;-->
+                    <!--                                    <label class="control-label"  for="netIncome">Dochód netto</label>-->
+                    <!--                                    <div class="controls">-->
+                    <!--                                        <input type="number" id="netIncome" name="netIncome" placeholder="" class="input-xlarge" th:field="*{netIncome}">-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                                <div class="form-group">-->
+                    <!--                                    <label> Umowa na czas nieokreślony-->
+                    <!--                                        <select id="isIndefiniteContract" name="isIndefiniteContract">-->
+                    <!--                                            <option value="true">Tak</option>-->
+                    <!--                                            <option value="false">Nie</option>-->
+                    <!--                                        </select>-->
+                    <!--                                    </label></br>-->
+                    <!--                                </div>-->
+                    <!--                                <div class="form-group">-->
+                    <!--                                    <label> Własne przedsiębiorstwo-->
+                    <!--                                        <select id="isSelfEmployed" name="isSelfEmployed">-->
+                    <!--                                            <option value="true">Tak</option>-->
+                    <!--                                            <option value="false">Nie</option>-->
+                    <!--                                        </select>-->
+                    <!--                                    </label></br>-->
+                    <!--                                </div>-->
+                    <!--                                <div class="form-group">-->
+                    <!--                                    <label> Forma rozliczenia-->
+                    <!--                                        <select id="isKpir" name="isKpir">-->
+                    <!--                                            <option value="true">Kpir</option>-->
+                    <!--                                            <option value="false">Ryczałt</option>-->
+                    <!--                                            <option value="false">Karta podatkowa</option>-->
+                    <!--                                        </select>-->
+                    <!--                                    </label></br>-->
+                    <!--                                </div>-->
+
+
+<br/>
+
+                    <div class="control-group">
+                        <!-- Button -->
+                        <div class="controls">
+                            <button class="btn btn-success">Zatwierdź dane i przejdź dalej</button>
+                        </div>
+                    </div>
+                                <br/>
+                </div>
+
+            </fieldset>
+        </form>
+        <!--        </div>-->
+        <!--    </div>-->
+    </div>
+</body>
