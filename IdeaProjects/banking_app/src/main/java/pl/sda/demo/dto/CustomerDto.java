@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.*;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,8 +27,6 @@ public class CustomerDto {
     @NotEmpty
     @Email
     private String email;
-
-
 
     @NotEmpty
     @Min(16)

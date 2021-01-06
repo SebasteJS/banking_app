@@ -23,7 +23,7 @@ public class CreditService {
 
     public Long add(CreditDto creditDto) {
         Credit credit1 = Credit.builder()
-                .loanAmmount(creditDto.getLoanAmmount())
+                .loanAmmount(creditDto.getLoanAmount())
                 .creditPeriod(creditDto.getCreditPeriod())
                 .customer(new Customer())
                 .build();
@@ -37,7 +37,7 @@ public class CreditService {
         for (Credit credit2 : credits) {
             creditDtoList.add(
                     CreditDto.builder()
-                            .loanAmmount(credit2.getLoanAmmount())
+                            .loanAmount(credit2.getLoanAmmount())
                             .creditPeriod(credit2.getCreditPeriod())
                             .build());
         }

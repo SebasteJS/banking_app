@@ -29,7 +29,6 @@ public class Service implements CommandLineRunner {
             return;
         }
 
-
         Role userRole1 = new Role();
         userRole1.setType(RoleType.CLIENT);
         roleRepository.save(userRole1);
@@ -41,6 +40,7 @@ public class Service implements CommandLineRunner {
         roleRepository.save(userRole3);
 
 
+
         Role advisorRole = roleRepository.findByType(RoleType.ADVISOR);
         Role clientRole = roleRepository.findByType(RoleType.CLIENT);
         Role adminRole = roleRepository.findByType(RoleType.ADMIN);
@@ -50,6 +50,7 @@ public class Service implements CommandLineRunner {
         userRepository.save(new User(null, "Tomek", "ASD", "loginJakis", PasswordEncoder.encode("Innehaslo"), Arrays.asList(clientRole)));
         userRepository.save(new User(null, "Kasia", "Nowak", "looogin", PasswordEncoder.encode("haslo3"), Arrays.asList(clientRole)));
         userRepository.save(new User(null, "SWA", "SWA", "SWA", PasswordEncoder.encode("SWA"), Arrays.asList(adminRole)));
+
 
 
     }

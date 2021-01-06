@@ -24,18 +24,18 @@ public class Property {
     private double price;
 
     // albo rynek wtórny albo pierwotny
+
     @Column
     private boolean isPrimaryMarket;
 
     // albo własność albo spółdzielcze własnościowe
     @Column
-    private boolean isOwnership;
+    private String isOwnership;
 
 
     // albo mieszkanie albo dom
     @Column
-    private boolean isFlat;
-
+    private String isFlat;
 
     @OneToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")

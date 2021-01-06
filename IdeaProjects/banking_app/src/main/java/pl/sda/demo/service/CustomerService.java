@@ -1,23 +1,34 @@
 package pl.sda.demo.service;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import pl.sda.demo.dto.CustomerDto;
-import pl.sda.demo.dto.UserDto;
 import pl.sda.demo.model.Customer;
-import pl.sda.demo.model.Role;
-import pl.sda.demo.model.User;
-import pl.sda.demo.repository.RoleRepository;
-import pl.sda.demo.role.RoleType;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class CustomerService {
 
 
+    private List<Customer> customers = new ArrayList<>();
+
+    public List<Customer> list() {
+        return customers;
+    }
+
+    public void add(Customer customer) {
+        customers.add(customer);
+    }
+
+    public void delete(Long id) {
+        Customer customerToDelete =
+
+                customers.stream()
+                        .filter(t -> t.getId().equals(id))
+                        .collect(Collectors.toList()).get(0);
+        customers.remove(customerToDelete);
+    }
 }
