@@ -15,6 +15,10 @@ import javax.persistence.*;
 @Table(name = "Role")
 public class Role {
 
+    public Role(RoleType roleType){
+        type = roleType;
+    }
+
     @Id
     @GeneratedValue
     @Column(name = "role_id")

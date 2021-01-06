@@ -1,6 +1,7 @@
 package pl.sda.demo.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Builder
 @Entity
 @Table(name = "customer")
 public class Customer {
@@ -49,17 +50,9 @@ public class Customer {
     // 3. kredyt wypłacony 4. nieaktywny
 
     // 1
-    @Column(name = "prospect")
-    private boolean isProspect;
-    // 2
-    @Column(name = "credit_application_submitted")
-    private boolean isCreditApplicationSubmitted;
-    // 3
-    @Column(name = "credit_finished")
-    private boolean isCreditFinshed;
-    // 4
-    @Column(name = "inactive")
-    private boolean isInactive;
+    @Column(name = "customer_status")
+    private String customerStatus;
+
 
     @ManyToOne
     private FinanceAdvisor financeAdvisor;

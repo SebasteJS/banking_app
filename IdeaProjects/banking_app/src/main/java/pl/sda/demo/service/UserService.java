@@ -2,38 +2,50 @@ package pl.sda.demo.service;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.sda.demo.model.User;
-import pl.sda.demo.repository.RoleRepository;
 import pl.sda.demo.dto.UserDto;
+import pl.sda.demo.model.Role;
+import pl.sda.demo.model.User;
+import pl.sda.demo.role.RoleType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.TreeSet;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
     private final pl.sda.demo.repository.UserRepository UserRepository;
+    private final pl.sda.demo.repository.RoleRepository RoleRepository;
+    private final org.springframework.security.crypto.password.PasswordEncoder PasswordEncoder;
 
-    @Autowired
-    private final RoleRepository roleRepository;
 
     public Long add(UserDto userDto) {
+        List<Role> roles = userDto.getRoles();
+        if (roles == null) {
+            Role role = new Role(RoleType.CLIENT);
+            RoleRepository.save(role);
+            roles = Collections.singletonList(role);
+
+
+        }
         User user1 = User.builder()
                 .first_name(userDto.getFirst_name())
                 .last_name(userDto.getLast_name())
                 .login(userDto.getLogin())
-                .password(userDto.getPassword())
-                .roles(userDto.getRoles())
+                .password(PasswordEncoder.encode(userDto.getPassword()))
+                .roles(roles)
                 .build();
+
         UserRepository.save(user1);
-        return UserRepository.save(user1).getId();
+        return user1.getId();
     }
 
     public List<UserDto> findAll() {
-        List<UserDto> userDtoUser = new ArrayList<>();
+
+        List<UserDto> userDtoUser = new ArrayList<>(); // zmienic moze z ArrayList na TreeSet bo TreeSet nie moze miec powtarzajacych sie obiketow
         Iterable<User> users = UserRepository.findAll();
         for (User users2 : users) {
             userDtoUser.add(
@@ -44,9 +56,11 @@ public class UserService {
 //                            .password(users2.getPassword())
                             .roles(users2.getRoles())
                             .build());
+
         }
         return userDtoUser;
-
-
     }
 }
+
+
+
