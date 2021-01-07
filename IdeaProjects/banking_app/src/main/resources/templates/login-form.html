@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+<<<
     <title>Login</title>
     <link rel="stylesheet" href="static.css/bootstrap.min.css">
     <script type="text/javascript" src="static.css/jquery-3.5.1.min.js"></script>
@@ -18,6 +19,7 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css\main.css" type="text/css"/>
+
 </head>
 <body>
 
@@ -34,15 +36,16 @@
     <h1>
         Log in to service:
     </h1>
+    <p class="alert alert-danger" th:if="${param.error}" th:text="'Podany login lub hasło są nieprawidłowe'"></p>
 
-    <form method="post" th:action="@{/login}">
+    <form method="post" action="/login" >
         <div class="form-group">
             <label for="login">Login</label>
-            <input type="email" class="form-control" id="login" placeholder="Enter login">
+            <input type="text" class="form-control" id="login" name="login" placeholder="Enter login" th:required="required" th:autofocus="autofocus">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" th:required="required">
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
