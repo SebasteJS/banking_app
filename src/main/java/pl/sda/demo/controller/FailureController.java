@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class FailureController {
 
     @GetMapping("/failure")
-    public String login() {
+    public String feature() {
         return "failure";
     }
+
 }
