@@ -32,7 +32,5 @@ public class Credit {
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
-//    @OneToOne(mappedBy = "credit")
-//    private Customer customer;
 }
 

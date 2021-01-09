@@ -6,5 +6,4 @@ import pl.sda.demo.model.User;
 @org.springframework.stereotype.Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-
 }

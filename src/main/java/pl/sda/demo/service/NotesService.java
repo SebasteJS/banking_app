@@ -1,15 +1,10 @@
 package pl.sda.demo.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.demo.dto.NotesDto;
-import pl.sda.demo.dto.UserDto;
 import pl.sda.demo.model.Notes;
-import pl.sda.demo.model.Role;
-import pl.sda.demo.model.User;
-import pl.sda.demo.repository.RoleRepository;
-import pl.sda.demo.role.RoleType;
+import pl.sda.demo.repository.NotesRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +13,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class NotesService {
-    private final pl.sda.demo.repository.NotesRepository notesRepository;
 
+    private final NotesRepository notesRepository;
 
     public Long add(NotesDto notesDto) {
         Notes notes1 = Notes.builder()

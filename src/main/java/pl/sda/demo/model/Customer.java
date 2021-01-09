@@ -38,20 +38,8 @@ public class Customer {
     @Column(name = "kids")
     private int kids;
 
-//    @Column(name = "login")
-//    private String login;
-//
-//    @Column(name = "password")
-//    private String password;
-
-
-
-    // status klienta - 1. prospect, 2. złożont wniosek;
-    // 3. kredyt wypłacony 4. nieaktywny
-
-    // 1
     @Column(name = "customer_status")
-    private String customerStatus;
+    private String customerStatus; //status klienta - 1. prospect, 2. złożont wniosek; //TODO przerobić na enum
 
     @ManyToOne
     private FinanceAdvisor financeAdvisor;

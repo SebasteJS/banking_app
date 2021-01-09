@@ -22,10 +22,10 @@ public class UserDto implements Serializable {
     private Long id;
 
     @NotEmpty
-    private String first_name;
+    private String firstName;
 
     @NotEmpty
-    private String last_name;
+    private String lastName;
 
     @NotEmpty
     @Size(min = 4, message = "login must be at least 4 characters long")

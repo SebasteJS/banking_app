@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.sda.demo.dto.CreditDto;
+import pl.sda.demo.service.CreditService;
 
 import javax.validation.Valid;
 
@@ -16,12 +17,12 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class CreditController {
 
-    private final pl.sda.demo.service.CreditService CreditService;
+    private final CreditService creditService;
 
     @Secured({"ROLE_ADVISOR"})
     @GetMapping("/credit")
     public String credit(Model model) {
-        model.addAttribute("credits", CreditService.findAll());
+        model.addAttribute("credits", creditService.findAll());
         model.addAttribute("credit", CreditDto.builder().build());
         return "credit";
     }
@@ -29,9 +30,10 @@ public class CreditController {
 
     @Secured({"ROLE_ADVISOR", "CLIENT"})
     @PostMapping("/credit")
-    public String creditAdding(Model model, @ModelAttribute("credit") @Valid CreditDto user2, BindingResult bindingResult) {
+    public String creditAdding(Model model, @ModelAttribute("credit") @Valid CreditDto user2,
+                               BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
-            CreditService.add(user2);
+            creditService.add(user2);
         }
         model.addAttribute("credits", new CreditDto());
 

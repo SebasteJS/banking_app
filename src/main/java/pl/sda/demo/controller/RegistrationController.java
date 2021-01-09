@@ -16,21 +16,21 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class RegistrationController {
 
-    private final UserService UserService;
-
+    private final UserService userService;
 
     @GetMapping("/registration")
     public String registration(Model model) {
-        model.addAttribute("users",UserService.findAll());
-        model.addAttribute("user", UserDto.builder().build());
+        model.addAttribute("users", userService.findAll());
+        model.addAttribute("user", new UserDto());
         return "registration-form";
     }
 
 
     @PostMapping("/registration")
-    public String registrationAdding(Model model, @ModelAttribute("user") @Valid UserDto user2, BindingResult bindingResult) {
+    public String registrationAdding(Model model, @ModelAttribute("user") @Valid UserDto user2,
+                                     BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
-            UserService.add(user2);
+            userService.add(user2);
             return "login-form";
         }
 

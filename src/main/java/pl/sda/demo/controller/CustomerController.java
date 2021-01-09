@@ -8,14 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.sda.demo.dto.CustomerDto;
 import pl.sda.demo.model.Customer;
 import pl.sda.demo.service.CustomerService;
 
 
 @Controller
 @RequestMapping("/customers")
-
 @RequiredArgsConstructor
 public class CustomerController {
 
@@ -23,7 +21,7 @@ public class CustomerController {
 
     @GetMapping
     public String customers(Model model) {
-        model.addAttribute("customers", customerService.list());
+        addCustomers(model);
         model.addAttribute("customer", Customer.builder().build());
         return "customers";
     }
@@ -31,9 +29,11 @@ public class CustomerController {
     @PostMapping("/add")
     public String addCustomer(@ModelAttribute("customer") Customer customer, Model model) {
         customerService.add(customer);
-        model.addAttribute("customers", customerService.list());
+        addCustomers(model);
         return "customers";
     }
 
-
+    private void addCustomers(Model model) {
+        model.addAttribute("customers", customerService.list());
+    }
 }

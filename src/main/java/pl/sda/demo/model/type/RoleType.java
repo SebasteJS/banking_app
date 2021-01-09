@@ -1,4 +1,4 @@
-package pl.sda.demo.role;
+package pl.sda.demo.model.type;
 
 public enum RoleType {
     ADVISOR,

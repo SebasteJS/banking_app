@@ -2,56 +2,57 @@ package pl.sda.demo.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sda.demo.dto.UserDto;
 import pl.sda.demo.model.Role;
 import pl.sda.demo.model.User;
-import pl.sda.demo.role.RoleType;
+import pl.sda.demo.model.type.RoleType;
+import pl.sda.demo.repository.RoleRepository;
+import pl.sda.demo.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.TreeSet;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
-    private final pl.sda.demo.repository.UserRepository UserRepository;
-    private final pl.sda.demo.repository.RoleRepository RoleRepository;
-    private final org.springframework.security.crypto.password.PasswordEncoder PasswordEncoder;
-
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public Long add(UserDto userDto) {
         List<Role> roles = userDto.getRoles();
         if (roles == null) {
             Role role = new Role(RoleType.CLIENT);
-            RoleRepository.save(role);
+            roleRepository.save(role);
             roles = Collections.singletonList(role);
 
 
         }
         User user1 = User.builder()
-                .first_name(userDto.getFirst_name())
-                .last_name(userDto.getLast_name())
+                .firstName(userDto.getFirstName())
+                .lastName(userDto.getLastName())
                 .login(userDto.getLogin())
-                .password(PasswordEncoder.encode(userDto.getPassword()))
+                .password(passwordEncoder.encode(userDto.getPassword()))
                 .roles(roles)
                 .build();
 
-        UserRepository.save(user1);
+        userRepository.save(user1);
         return user1.getId();
     }
 
     public List<UserDto> findAll() {
 
         List<UserDto> userDtoUser = new ArrayList<>(); // zmienic moze z ArrayList na TreeSet bo TreeSet nie moze miec powtarzajacych sie obiketow
-        Iterable<User> users = UserRepository.findAll();
+        Iterable<User> users = userRepository.findAll();
         for (User users2 : users) {
             userDtoUser.add(
                     UserDto.builder()
-                            .first_name(users2.getFirst_name())
-                            .last_name(users2.getLast_name())
+                            .firstName(users2.getFirstName())
+                            .lastName(users2.getLastName())
 //                            .login(users2.getLogin())
 //                            .password(users2.getPassword())
                             .roles(users2.getRoles())

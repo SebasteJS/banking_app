@@ -18,8 +18,6 @@ public class FinanceAdvisorDto {
 
     private Long id;
 
-
-
     @NotEmpty
     private String lastName;
 

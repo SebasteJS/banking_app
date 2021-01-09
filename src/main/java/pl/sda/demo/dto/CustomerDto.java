@@ -37,7 +37,6 @@ public class CustomerDto {
     @Min(0)
     private int kids;
 
-    // 1
     @NotEmpty
     private String customerStatus;
 

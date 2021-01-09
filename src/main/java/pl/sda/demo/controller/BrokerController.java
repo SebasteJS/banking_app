@@ -19,7 +19,7 @@ public class BrokerController {
 
     @GetMapping
     public String brokers(Model model) {
-        model.addAttribute("brokers", brokerService.list());
+        getAllBrokers(model);
         model.addAttribute("broker", BrokerDto.builder().build());
         return "brokers";
     }
@@ -27,7 +27,11 @@ public class BrokerController {
     @PostMapping("/add")
     public String addBroker(@ModelAttribute("broker") BrokerDto broker, Model model) {
         brokerService.add(broker);
-        model.addAttribute("brokers", brokerService.list());
+        getAllBrokers(model);
         return "brokers";
+    }
+
+    private void getAllBrokers(Model model) {
+        model.addAttribute("brokers", brokerService.list());
     }
 }

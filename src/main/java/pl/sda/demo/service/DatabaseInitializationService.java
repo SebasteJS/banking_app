@@ -8,14 +8,14 @@ import pl.sda.demo.model.Role;
 import pl.sda.demo.model.User;
 import pl.sda.demo.repository.RoleRepository;
 import pl.sda.demo.repository.UserRepository;
-import pl.sda.demo.role.RoleType;
+import pl.sda.demo.model.type.RoleType;
 
 import java.util.Arrays;
 
 
 @Component
 @RequiredArgsConstructor
-public class Service implements CommandLineRunner {
+public class DatabaseInitializationService implements CommandLineRunner {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;

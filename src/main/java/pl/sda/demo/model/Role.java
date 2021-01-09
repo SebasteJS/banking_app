@@ -3,7 +3,7 @@ package pl.sda.demo.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.sda.demo.role.RoleType;
+import pl.sda.demo.model.type.RoleType;
 
 import javax.persistence.*;
 
@@ -24,7 +24,7 @@ public class Role {
     @Column(name = "role_id")
     private Long id;
 
-    @Column(name = "typ_roli")
+    @Column(name = "typ_roli")  //TODO przerobić nazwa po angielsku
     @Enumerated(EnumType.STRING)
     private RoleType type;
 

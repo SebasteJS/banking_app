@@ -1,15 +1,10 @@
 package pl.sda.demo.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.demo.dto.FinanceAdvisorDto;
-import pl.sda.demo.dto.UserDto;
 import pl.sda.demo.model.FinanceAdvisor;
-import pl.sda.demo.model.Role;
-import pl.sda.demo.model.User;
-import pl.sda.demo.repository.RoleRepository;
-import pl.sda.demo.role.RoleType;
+import pl.sda.demo.repository.FinancialAdvisorRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +13,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class FinanceAdvisorService {
-    private final pl.sda.demo.repository.FinancialAdvisorRepository FinancialAdvisorRepository;
 
+    private final FinancialAdvisorRepository financialAdvisorRepository;
 
     public Long add(FinanceAdvisorDto advisorDto) {
         FinanceAdvisor advisor1 = FinanceAdvisor.builder()
@@ -28,13 +23,13 @@ public class FinanceAdvisorService {
                 .login(advisorDto.getLogin())
                 .password(advisorDto.getPassword())
                 .build();
-        FinancialAdvisorRepository.save(advisor1);
-        return FinancialAdvisorRepository.save(advisor1).getId();
+        financialAdvisorRepository.save(advisor1);
+        return financialAdvisorRepository.save(advisor1).getId();
     }
 
     public List<FinanceAdvisorDto> findAll() {
         List<FinanceAdvisorDto> advisorDtoUser = new ArrayList<>();
-        Iterable<FinanceAdvisor> advisors = FinancialAdvisorRepository.findAll();
+        Iterable<FinanceAdvisor> advisors = financialAdvisorRepository.findAll();
         for (FinanceAdvisor advisors2 : advisors) {
             advisorDtoUser.add(
                     FinanceAdvisorDto.builder()

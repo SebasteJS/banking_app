@@ -26,13 +26,10 @@ public class CustomerIncome {
     private boolean isIndefiniteContract;
 
     @Column
-    private boolean isSelfEmployed;
-    // if true wtedy czy kpir, karta, ryczałt
-
-    //albo kpir, ryczalt karta podatkowa
+    private boolean isSelfEmployed; // if true wtedy czy kpir, karta, ryczałt
 
     @Column
-    private String formOfSettlement;
+    private String formOfSettlement; //kpir, ryczalt karta podatkowa
 
     @OneToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")

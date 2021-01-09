@@ -23,19 +23,14 @@ public class Property {
     @Column
     private double price;
 
-    // albo rynek wtórny albo pierwotny
+    @Column
+    private boolean isPrimaryMarket; //rynek wtórny albo pierwotny
 
     @Column
-    private boolean isPrimaryMarket;
+    private String isOwnership; //własność albo spółdzielcze własnościowe
 
-    // albo własność albo spółdzielcze własnościowe
     @Column
-    private String isOwnership;
-
-
-    // albo mieszkanie albo dom
-    @Column
-    private String isFlat;
+    private String isFlat; //mieszkanie albo dom //TODO przerobić na enum
 
     @OneToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")

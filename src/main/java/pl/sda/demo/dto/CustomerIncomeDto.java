@@ -22,11 +22,9 @@ public class CustomerIncomeDto {
     private boolean isIndefiniteContract;
 
     @NotEmpty
-    private boolean isSelfEmployed;
-    // if true wtedy czy kpir, karta, ryczałt
+    private boolean isSelfEmployed;     // if true wtedy czy kpir, karta, ryczałt
 
-    //albo kpir, ryczalt karta podatkowa
     @NotEmpty
-    private String formOfSettlement;
+    private String formOfSettlement;    //albo kpir, ryczalt karta podatkowa
 }
 

@@ -17,15 +17,10 @@ public class PropertyDto {
     @NotEmpty
     private double price;
 
-    // albo rynek wtórny albo pierwotny
+    private boolean isPrimaryMarket; // rynek wtórny albo pierwotny
 
-    private boolean isPrimaryMarket;
+    private String isOwnership; // własność albo spółdzielcze własnościowe
 
-    // albo własność albo spółdzielcze własnościowe
-    private String isOwnership;
-
-
-    // albo mieszkanie albo dom
-    private String isFlat;
+    private String isFlat;  // mieszkanie albo dom
 
 }

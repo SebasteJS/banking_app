@@ -1,16 +1,11 @@
 package pl.sda.demo.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.demo.dto.CustomerLiabilitiesDto;
-import pl.sda.demo.dto.UserDto;
 import pl.sda.demo.model.Customer;
 import pl.sda.demo.model.CustomerLiabilities;
-import pl.sda.demo.model.Role;
-import pl.sda.demo.model.User;
-import pl.sda.demo.repository.RoleRepository;
-import pl.sda.demo.role.RoleType;
+import pl.sda.demo.repository.CustomerLiabilitiesRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +14,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CustomerLiabilitiesService {
-    private final pl.sda.demo.repository.CustomerLiabilitiesRepository CustomerLiabilitiesRepository;
+    private final CustomerLiabilitiesRepository customerLiabilitiesRepository;
 
 
     public Long add(CustomerLiabilitiesDto liabilitiesdto) {
@@ -29,13 +24,13 @@ public class CustomerLiabilitiesService {
                 .childSupport(liabilitiesdto.getChildSupport())
                 .customer(new Customer())
                 .build();
-        CustomerLiabilitiesRepository.save(liabilities1);
-        return CustomerLiabilitiesRepository.save(liabilities1).getId();
+        customerLiabilitiesRepository.save(liabilities1);
+        return customerLiabilitiesRepository.save(liabilities1).getId();
     }
 
     public List<CustomerLiabilitiesDto> findAll() {
         List<CustomerLiabilitiesDto> customerliab = new ArrayList<>();
-        Iterable<CustomerLiabilities> liabilities = CustomerLiabilitiesRepository.findAll();
+        Iterable<CustomerLiabilities> liabilities = customerLiabilitiesRepository.findAll();
         for (CustomerLiabilities liabilities2 : liabilities) {
             customerliab.add(
                     CustomerLiabilitiesDto.builder()

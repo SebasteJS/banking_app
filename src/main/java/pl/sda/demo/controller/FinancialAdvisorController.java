@@ -13,6 +13,6 @@ public class FinancialAdvisorController {
             return "advisor-panel";
         }
 
-    }
+}
 
 

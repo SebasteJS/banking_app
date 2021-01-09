@@ -2,7 +2,6 @@ package pl.sda.demo.service;
 
 
 import org.springframework.stereotype.Service;
-import pl.sda.demo.dto.CustomerDto;
 import pl.sda.demo.model.Customer;
 
 import java.util.ArrayList;
@@ -11,7 +10,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
-
 
     private List<Customer> customers = new ArrayList<>();
 
