@@ -31,6 +31,7 @@ public class RegistrationController {
     public String registrationAdding(Model model, @ModelAttribute("user") @Valid UserDto user2, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             UserService.add(user2);
+            return "login-form";
         }
 
         model.addAttribute("users", new UserDto());
