@@ -1,4 +1,4 @@
-package pl.sda.demo.Configuration;
+package pl.sda.demo.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 
 @EnableWebSecurity
-public class Config extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Override
