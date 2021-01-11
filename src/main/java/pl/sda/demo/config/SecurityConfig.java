@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/resources/**").permitAll()
-                .antMatchers("/advisor_panel").access("hasRole('ROLE_ADVISOR')")
+                .antMatchers("/advisor_panel").access("hasRole('ROLE_ADVISOR')")// autoRised
                 .antMatchers("/broker").access("hasRole('ROLE_ADVISOR')")
                 .antMatchers("/client").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
                 .antMatchers("/credit").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
@@ -29,7 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/clientIncome").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
                 .antMatchers("/clientLiabilities/").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
                 .antMatchers("/clientLiabilities/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")//
-                .antMatchers("/index").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT') or hasRole('ROLE_ADMIN')")//
                 .antMatchers("/login*").permitAll()
                 .antMatchers("/regist*").permitAll()
                 .antMatchers("/users").permitAll()

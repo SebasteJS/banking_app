@@ -12,61 +12,39 @@
 
 <div class="container">
     <br/>
-    <h3 class="h3">Klienci:</h3>
-    <table class="table table-bordered">
-        <tr class="table-striped">
-            <th>Imię</th>
-            <th>Nazwisko</th>
-            <th>Numer telefonu</th>
-            <th>Email</th>
-            <th>Wiek</th>
-            <th>Dzieci</th>
-            <th>Status klienta</th>
-            <th>Przychód netto</th>
-            <th>Umowa na stałe</th>
-            <th>Samozatrudnienie</th>
-            <th>Forma rozliczenia</th>
-            <th>Karty kredytowe</th>
-            <th>Wysokość debetu</th>
-            <th>Dodatek na dzieci</th>
-            <th>Cena nieruchomości</th>
-            <th>Rynek pierwotny</th>
-            <th>Prawo własności</th>
-            <th>Typ nieruchomości</th>
-            <th>Wysokość kredytu</th>
-            <th>Okres kredytowania</th>
+    <!--    <h3 class="h3">Klienci:</h3>-->
+
+    <th:block th:each="customer : ${customers}">
+        <tr>
+            <td th:text="${customer.firstName}"></td>
+            <td th:text="${customer.lastName}"></td>
+            <td th:text="${customer.phone}"></td>
+            <td th:text="${customer.email}"></td>
+            <td th:text="${customer.age}"></td>
+            <td th:text="${customer.kids}"></td>
+            <td th:text="${customer.customerStatus}"></td>
+            <td th:text="${customer.customerIncome.netIncome}"></td>
+            <td th:text="${customer.customerIncome.isIndefiniteContract}"></td>
+            <td th:text="${customer.customerIncome.isSelfEmployed}"></td>
+            <td th:text="${customer.customerIncome.formOfSettlement}"></td>
+            <td th:text="${customer.customerLiabilities.creditCards}"></td>
+            <td th:text="${customer.customerLiabilities.accountDebt}"></td>
+            <td th:text="${customer.customerLiabilities.childSupport}"></td>
+            <td th:text="${customer.property.price}"></td>
+            <td th:text="${customer.property.isPrimaryMarket}"></td>
+            <td th:text="${customer.property.isOwnership}"></td>
+            <td th:text="${customer.property.isFlat}"></td>
+            <td th:text="${customer.credit.loanAmmount}"></td>
+            <td th:text="${customer.credit.creditPeriod}"></td>
         </tr>
-        <th:block th:each="customer : ${customers}">
-            <tr>
-                <td th:text="${customer.firstName}"></td>
-                <td th:text="${customer.lastName}"></td>
-                <td th:text="${customer.phone}"></td>
-                <td th:text="${customer.email}"></td>
-                <td th:text="${customer.age}"></td>
-                <td th:text="${customer.kids}"></td>
-                <td th:text="${customer.customerStatus}"></td>
-                <td th:text="${customer.customerIncome.netIncome}"></td>
-                <td th:text="${customer.customerIncome.isIndefiniteContract}"></td>
-                <td th:text="${customer.customerIncome.isSelfEmployed}"></td>
-                <td th:text="${customer.customerIncome.formOfSettlement}"></td>
-                <td th:text="${customer.customerLiabilities.creditCards}"></td>
-                <td th:text="${customer.customerLiabilities.accountDebt}"></td>
-                <td th:text="${customer.customerLiabilities.childSupport}"></td>
-                <td th:text="${customer.property.price}"></td>
-                <td th:text="${customer.property.isPrimaryMarket}"></td>
-                <td th:text="${customer.property.isOwnership}"></td>
-                <td th:text="${customer.property.isFlat}"></td>
-                <td th:text="${customer.credit.loanAmmount}"></td>
-                <td th:text="${customer.credit.creditPeriod}"></td>
-            </tr>
-        </th:block>
+    </th:block>
     </table>
 
-    <div>
-        <input type="button" value="Dodaj nowego klienta" onclick="$('#addCustomerDiv').toggle()"
-               class="btn btn-success"/>
+    <!--    <div>-->
+    <!--        <input type="button" value="Dodaj nowego klienta" onclick="$('#addCustomerDiv').toggle()"-->
+    <!--               class="btn btn-success"/>-->
 
-    </div>
+    <!--    </div>-->
 
     <br/>
     <div id="addCustomerDiv">
@@ -150,11 +128,40 @@
                     </div>
                 </div>
 
+
+                <div class="control-group">
+                    <div class="form-group">
+                        <label>Umowa o pracę<br/>
+                            <select id="customerIncome.isContractOfEmployment"
+                                    name="customerIncome.isIndefiniteContract">
+                                <option value="false">Nie</option>
+                                <option value="true">Tak</option>
+
+                            </select>
+                        </label><br/>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Typ umowy<br/>
+                            <select id="customerIncome.isIndefiniteContract" name="customerIncome.isIndefiniteContract">
+                                <option value="-">Nie dotyczy</option>
+                                <option value="Czas nieokreślony">Czas nieokreślony</option>
+                                <option value="Czas określony">Czas określony</option>
+
+
+                            </select>
+                        </label>
+                        <br/>
+                    </div>
+                </div>
+
+
                 <div class="control-group">
                     <div class="form-group">
                         <label> Samozatrudnienie<br/>
-                            <select id="customerIncome.isIndefiniteContract"
-                                    name="customerIncome.isIndefiniteContract">
+                            <select id="customerIncome.sSelfEmployed"
+                                    name="customerIncome.sSelfEmployed">
                                 <option value="true">Tak</option>
                                 <option value="false">Nie</option>
 

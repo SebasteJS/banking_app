@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class FinancialAdvisorController {
 
     @Secured("ROLE_ADVISOR")
-    @GetMapping("/advisor_panel")
+    @GetMapping("/advisor-panel")
         public String mainPage () {
             return "advisor-panel";
         }

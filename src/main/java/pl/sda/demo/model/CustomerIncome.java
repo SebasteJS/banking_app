@@ -23,6 +23,9 @@ public class CustomerIncome {
     private double netIncome;
 
     @Column
+    private boolean isContractOfEmployment;
+
+    @Column
     private boolean isIndefiniteContract;
 
     @Column

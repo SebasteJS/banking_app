@@ -11,9 +11,7 @@ import pl.sda.demo.model.type.RoleType;
 import pl.sda.demo.repository.RoleRepository;
 import pl.sda.demo.repository.UserRepository;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -60,6 +58,26 @@ public class UserService {
 
         }
         return userDtoUser;
+    }
+
+
+    public void update(UserDto userDto) {
+        Optional<User> optionalUser = userRepository.findById(userDto.getId());
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setFirstName(userDto.getFirstName());
+            user.setLastName(userDto.getLastName());
+            user.setRoles(userDto.getRoles());
+            user.setLogin(userDto.getLogin());
+            user.setPassword(userDto.getPassword());
+
+            userRepository.save(user);
+        }
+    }
+
+
+    public void delete(Long userId) {
+        userRepository.deleteById(userId);
     }
 }
 
