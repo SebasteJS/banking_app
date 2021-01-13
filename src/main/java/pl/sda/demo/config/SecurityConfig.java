@@ -35,12 +35,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
 
         http.formLogin()
-                .loginPage("/login")// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
-
+                .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .usernameParameter("login")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/index", true);///???
+                .defaultSuccessUrl("/index", true);
 
         http.csrf().disable()
                 .headers().frameOptions().disable();
