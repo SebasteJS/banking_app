@@ -44,7 +44,7 @@ public class UserService {
 
     public List<UserDto> findAll() {
 
-        List<UserDto> userDtoUser = new ArrayList<>(); // zmienic moze z ArrayList na TreeSet bo TreeSet nie moze miec powtarzajacych sie obiketow
+        List<UserDto> userDtoUser = new ArrayList<>();
         Iterable<User> users = userRepository.findAll();
         for (User users2 : users) {
             userDtoUser.add(

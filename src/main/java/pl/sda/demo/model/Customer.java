@@ -42,7 +42,7 @@ public class Customer {
     private String customerStatus; //status klienta - 1. prospect, 2. złożont wniosek; //TODO przerobić na enum
 
     @ManyToOne
-    private FinanceAdvisor financeAdvisor;
+    private User financeAdvisor;
 
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
     private Credit credit;
