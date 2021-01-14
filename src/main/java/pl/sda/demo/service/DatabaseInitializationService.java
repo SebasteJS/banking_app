@@ -4,13 +4,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import pl.sda.demo.model.Customer;
 import pl.sda.demo.model.Role;
 import pl.sda.demo.model.User;
 import pl.sda.demo.repository.RoleRepository;
 import pl.sda.demo.repository.UserRepository;
 import pl.sda.demo.model.type.RoleType;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 @Component
@@ -20,6 +23,7 @@ public class DatabaseInitializationService implements CommandLineRunner {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder PasswordEncoder;
+//    private List<Customer> list;
 
 
     @Override
@@ -46,10 +50,10 @@ public class DatabaseInitializationService implements CommandLineRunner {
         Role adminRole = roleRepository.findByType(RoleType.ADMIN);
 
 
-        userRepository.save(new User(null, "Marcin", "Kwiatkowski", "innyLogin", PasswordEncoder.encode("password"), Arrays.asList(advisorRole)));
-        userRepository.save(new User(null, "Tomek", "ASD", "loginJakis", PasswordEncoder.encode("Innehaslo"), Arrays.asList(clientRole)));
-        userRepository.save(new User(null, "Kasia", "Nowak", "looogin", PasswordEncoder.encode("haslo3"), Arrays.asList(clientRole)));
-        userRepository.save(new User(null, "SWA", "SWA", "SWA", PasswordEncoder.encode("SWA"), Arrays.asList(adminRole)));
+        userRepository.save(new User(null, "Marcin", "Kwiatkowski", "innyLogin", PasswordEncoder.encode("password"), Arrays.asList(advisorRole), new ArrayList<>()));
+        userRepository.save(new User(null, "Tomek", "ASD", "loginJakis", PasswordEncoder.encode("Innehaslo"), Arrays.asList(clientRole), new ArrayList<>()));
+        userRepository.save(new User(null, "Kasia", "Nowak", "looogin", PasswordEncoder.encode("haslo3"), Arrays.asList(clientRole), null));
+        userRepository.save(new User(null, "SWA", "SWA", "SWA", PasswordEncoder.encode("SWA"), Arrays.asList(adminRole), null));
 
 
 
