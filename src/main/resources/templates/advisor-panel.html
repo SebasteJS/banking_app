@@ -1,46 +1,17 @@
-<meta charset="UTF-8">
-<title>Panel doradcy</title>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!DOCTYPE html>
+<head xmlns:th="http://www.w3.org/1999/xhtml">
+    <meta charset="UTF-8">
+    <title>Panel doradcy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-
 <body>
-
 <div>
-    <table class="table table-bordered">
-
-
-        <tr class="table-striped">
-            <th>Imię</th>
-            <th>Nazwisko</th>
-            <th>Numer telefonu</th>
-            <th>Email</th>
-            <th>Wiek</th>
-            <th>Dzieci</th>
-            <th>Status klienta</th>
-            <th>Przychód netto</th>
-            <th>Umowa na stałe</th>
-            <th>Samozatrudnienie</th>
-            <th>Forma rozliczenia</th>
-            <th>Karty kredytowe</th>
-            <th>Wysokość debetu</th>
-            <th>Dodatek na dzieci</th>
-            <th>Cena nieruchomości</th>
-            <th>Rynek pierwotny</th>
-            <th>Prawo własności</th>
-            <th>Typ nieruchomości</th>
-            <th>Wysokość kredytu</th>
-            <th>Okres kredytowania</th>
-        </tr>
-    </table>
+    <!--tu wkleic tabelke customers jak bedzie juz dzialala-->
     <div class="container">
-
         <h1>
             Co chcesz teraz zrobić?
         </h1>
-
-
         <form method="get" action="/customers">
             <input id="myButton4" name="myButton4" type="submit" value="Dodaj klienta" class="btn btn-primary"/>
         </form>
@@ -48,9 +19,6 @@
             <input id="myButton5" name="myButton5" type="submit" value="Przejdź do bazy brokerów"
                    class="btn btn-primary"/>
         </form>
-        </form>
     </div>
 </div>
-
 </body>
-</html>

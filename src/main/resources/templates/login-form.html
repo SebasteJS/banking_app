@@ -15,25 +15,13 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/login-form.css/login-form.css" th:href="@{/css/login-form.css}" type="text/css"/>
-
 </head>
 <body>
-
-<!--<div th:if="${param.error}">-->
-<!--    Invalid username or password.-->
-<!--</div>-->
-
-<!--<div th:if="${param.logout}">-->
-<!--    You have been logged out.-->
-<!--</div>-->
-
 <div class="container">
-
-    <h1>
+    <h3 class="justify-content-center">
         Log in to service:
-    </h1>
+    </h3>
     <p class="alert alert-danger" th:if="${param.error}" th:text="'Podany login lub hasło są nieprawidłowe'"></p>
-
     <form method="post" action="/login" >
         <div class="form-group">
             <label for="login">Login</label>
@@ -44,6 +32,9 @@
             <input type="password" class="form-control" id="password" name="password" placeholder="Password" th:required="required">
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <form method="get" action="/registration">
+        <input id="myButton4" name="myButton4" type="submit" value="Zarejestruj się" class="btn btn-primary"/>
     </form>
 </div>
 </body>

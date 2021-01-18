@@ -1,39 +1,56 @@
 package pl.sda.demo.controller;
-
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import pl.sda.demo.model.Customer;
+import pl.sda.demo.dto.CustomerDto;
+import pl.sda.demo.repository.CustomerRepository;
 import pl.sda.demo.service.CustomerService;
-
-
+import javax.validation.Valid;
+import java.util.ArrayList;
 @Controller
-@RequestMapping("/customers")
+//@RequestMapping("/customers") nie trzeba bo mamy w post i get wypisane adresy
 @RequiredArgsConstructor
 public class CustomerController {
-
     private final CustomerService customerService;
-
-    @GetMapping
+    private final CustomerRepository customerRepository;
+    @Secured({"ROLE_ADVISOR", "CLIENT"})//
+    @GetMapping("/customers")
     public String customers(Model model) {
-        addCustomers(model);
-        model.addAttribute("customer", Customer.builder().build());
+        if (!customerRepository.findAll().isEmpty() || customerRepository.findAll().size()!=0) {
+            model.addAttribute("customers", customerService.listCustomers());
+            model.addAttribute("customer", new CustomerDto());
+        }
+        model.addAttribute("customers", new ArrayList<CustomerDto>());
+        model.addAttribute("customer", new CustomerDto());
         return "customers";
     }
-
-    @PostMapping("/add")
-    public String addCustomer(@ModelAttribute("customer") Customer customer, Model model) {
-        customerService.add(customer);
-        addCustomers(model);
+    @Secured({"ROLE_ADVISOR", "CLIENT"})//
+    @PostMapping("customers/add")
+    public String addCustomer(@ModelAttribute("customer") @Valid CustomerDto customer, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
+            customerService.add(customer);
+            return "advisor-panel";
+        }
+        return "advisor-panel";//
+    }
+    @Secured({"ROLE_ADVISOR", "CLIENT"})//
+    @PostMapping("customers/update")
+    public String updateCustomer(@ModelAttribute("customer") @Valid CustomerDto customer, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
+            customerService.update(customer);
+            return "advisor-panel";
+        }
         return "customers";
     }
-
-    private void addCustomers(Model model) {
-        model.addAttribute("customers", customerService.list());
+    @Secured({"ROLE_ADVISOR", "CLIENT"})//
+    @PostMapping("customers/delete")
+    public String deleteCustomer(@ModelAttribute("customer") @Valid CustomerDto customer) {
+        customerService.delete(customer.getId());
+        return "customers";
     }
 }

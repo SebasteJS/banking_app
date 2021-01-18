@@ -1,20 +1,15 @@
 package pl.sda.demo.service;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.sda.demo.dto.CreditDto;
 import pl.sda.demo.model.Credit;
 import pl.sda.demo.model.Customer;
-
 import java.util.ArrayList;
 import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class CreditService {
     private final pl.sda.demo.repository.CreditRepository CreditRepository;
-
-
     public Long add(CreditDto creditDto) {
         Credit credit1 = Credit.builder()
                 .loanAmmount(creditDto.getLoanAmount())
@@ -24,7 +19,6 @@ public class CreditService {
         CreditRepository.save(credit1);
         return CreditRepository.save(credit1).getId();
     }
-
     public List<CreditDto> findAll() {
         List<CreditDto> creditDtoList = new ArrayList<>();
         Iterable<Credit> credits = CreditRepository.findAll();
@@ -36,7 +30,5 @@ public class CreditService {
                             .build());
         }
         return creditDtoList;
-
-
     }
 }
