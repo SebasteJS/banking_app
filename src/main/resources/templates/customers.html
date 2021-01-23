@@ -48,22 +48,26 @@
                 <td th:text="${customer.kids}"></td>
                 <td th:text="${customer.customerStatus}"></td>
 
-
-                <!--            <td th:text="${customer.customerIncome.netIncome}"></td>-->
-                <!--            <td th:text="${customer.customerIncome.isIndefiniteContract}"></td>-->
-                <!--            <td th:text="${customer.customerIncome.isSelfEmployed}"></td>-->
-                <!--            <td th:text="${customer.customerIncome.formOfSettlement}"></td>-->
-                <!--            <td th:text="${customer.customerLiabilities.creditCards}"></td>-->
-                <!--            <td th:text="${customer.customerLiabilities.accountDebt}"></td>-->
-                <!--            <td th:text="${customer.customerLiabilities.childSupport}"></td>-->
-                <!--            <td th:text="${customer.property.price}"></td>-->
-                <!--            <td th:text="${customer.property.isPrimaryMarket}"></td>-->
-                <!--            <td th:text="${customer.property.isOwnership}"></td>-->
-                <!--            <td th:text="${customer.property.isFlat}"></td>-->
-                <!--            <td th:text="${customer.credit.loanAmmount}"></td>-->
-                <!--            <td th:text="${customer.credit.creditPeriod}"></td>-->
             </tr>
         </th:block>
+<!--        <th:block th:each="customerIncome : ${customersIncome}">-->
+<!--            <tr>-->
+
+<!--                <td th:text="${customerIncome.netIncome}"></td>-->
+<!--                <td th:text="${customer.customerIncome.isIndefiniteContract}"></td>-->
+<!--                <td th:text="${customer.customerIncome.isSelfEmployed}"></td>-->
+<!--                <td th:text="${customer.customerIncome.formOfSettlement}"></td>-->
+<!--                <td th:text="${customer.customerLiabilities.creditCards}"></td>-->
+<!--                <td th:text="${customer.customerLiabilities.accountDebt}"></td>-->
+<!--                <td th:text="${customer.customerLiabilities.childSupport}"></td>-->
+<!--                <td th:text="${customer.property.price}"></td>-->
+<!--                <td th:text="${customer.property.isPrimaryMarket}"></td>-->
+<!--                <td th:text="${customer.property.isOwnership}"></td>-->
+<!--                <td th:text="${customer.property.isFlat}"></td>-->
+<!--                <td th:text="${customer.credit.loanAmmount}"></td>-->
+<!--                <td th:text="${customer.credit.creditPeriod}"></td>-->
+<!--            </tr>-->
+<!--        </th:block>-->
     </table>
 
 
@@ -111,15 +115,15 @@
                     </div>
 
 
-                    <!--                <div class="control-group">-->
+<!--                    <div class="control-group">-->
 
-                    <!--                    <label class="control-label" for="property.price">Cena nieruchomości</label>-->
-                    <!--                    <div class="controls">-->
-                    <!--                        <input type="number" id="property.price" name="property.price" placeholder=""-->
-                    <!--                               class="input-xlarge" th:field="*{property.price}">-->
-                    <!--                        PLN-->
-                    <!--                    </div>-->
-                    <!--                </div>-->
+<!--                        <label class="control-label" for="property.price">Cena nieruchomości</label>-->
+<!--                        <div class="controls">-->
+<!--                            <input type="number" id="property.price" name="property.price" placeholder=""-->
+<!--                                   class="input-xlarge" th:field="*{price}">-->
+<!--                            PLN-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="control-group">
                         <div class="form-group">
                             <label> Typ nieruchomości<br/>
@@ -254,6 +258,8 @@
                                         </select>
                                     </label><br/>
                                 </div>
+
+
                                 <div class="form-group">
                                     <label> Forma rozliczenia<br/>
                                         <select id="customerIncome.formOfSettlement"
@@ -266,6 +272,18 @@
                                     </label>
                                     <br/>
                                 </div>
+
+                         // cały div jest w formularzu niżej
+<!--                                <div class="control-group">-->
+<!--                                    <label class="control-label" for="netIncome">Dochód netto</label>-->
+<!--                                    <div class="controls">-->
+<!--                                        <input type="number" id="customerIncome.netIncome"-->
+<!--                                               name="netIncome" placeholder="" class="input-xlarge"-->
+<!--                                               th:field="*{netIncome}">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+
                                 <div class="control-group">
 
                                     <!--                                <label class="control-label" for="customerLiabilities.creditCards">Karty-->
@@ -310,6 +328,20 @@
                     </div>
                 </fieldset>
             </form>
+<!--            <form class="form-horizontal" method="post" th:action="@{/customers/add}" th:object="${customerIncome}">-->
+<!--                <fieldset>-->
+
+<!--                    <div class="control-group">-->
+<!--                        <label class="control-label" for="netIncome">Dochód netto</label>-->
+<!--                        <div class="controls">-->
+<!--                            <input type="number" id="netIncome"-->
+<!--                                   name="netIncome" placeholder="" class="input-xlarge"-->
+<!--                                   th:field="*{netIncome}">-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                </fieldset>-->
+<!--            </form>-->
         </div>
     </div>
 </div>

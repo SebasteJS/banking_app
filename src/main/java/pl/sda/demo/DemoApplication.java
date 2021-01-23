@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import pl.sda.demo.config.SecurityConfig;
 import pl.sda.demo.logic.CreditRateAndInterestsSimulator;
 import pl.sda.demo.model.Credit;
+import pl.sda.demo.model.User;
 
 @SpringBootApplication
 @EntityScan("pl.sda.demo.model")
@@ -19,13 +20,14 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
 
         Credit credit1 = new Credit();
-        credit1.setLoanAmmount(400000);
+        credit1.setLoanAmmount(300000);
         credit1.setCreditPeriod(30);
         credit1.setInterestRate(3);
         CreditRateAndInterestsSimulator simulator = new CreditRateAndInterestsSimulator();
 
         simulator.calculateAll(credit1);
         simulator.showInfo();
+
 
 
 //        simulator.setTerm(credit1);

@@ -21,19 +21,19 @@ public class CustomerDto {
     private String lastName;
 
     @NotEmpty
-    @Size(min = 9, message = "phone no. must be at least 9 digits long")
+//    @Size(min = 9, message = "phone no. must be at least 9 digits long")
     private String phone;
 
     @NotEmpty
     @Email
     private String email;
 
-    @NotEmpty
+//    @NotEmpty
     @Min(16)
     @Max(80)
     private int age;
 
-    @NotEmpty
+//    @NotEmpty
     @Min(0)
     private int kids;
 

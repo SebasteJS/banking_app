@@ -23,10 +23,10 @@ public class CustomerIncome {
     private double netIncome;
 
     @Column
-    private boolean isContractOfEmployment;
+    private boolean isContractOfEmployment; //
 
     @Column
-    private boolean isIndefiniteContract;
+    private boolean isIndefiniteContract; //
 
     @Column
     private boolean isSelfEmployed; // if true wtedy czy kpir, karta, ryczałt

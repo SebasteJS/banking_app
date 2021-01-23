@@ -19,6 +19,9 @@ public class CustomerIncomeDto {
     private double netIncome;
 
     @NotEmpty
+    private boolean isContractOfEmployment;
+
+    @NotEmpty
     private boolean isIndefiniteContract;
 
     @NotEmpty

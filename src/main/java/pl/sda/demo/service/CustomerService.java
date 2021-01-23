@@ -1,14 +1,23 @@
 package pl.sda.demo.service;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.demo.dto.CustomerDto;
 import pl.sda.demo.model.Customer;
 import pl.sda.demo.repository.CustomerRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 @Service
+@RequiredArgsConstructor
 public class CustomerService {
+
+    @Autowired
     CustomerRepository customerRepository;
+
     public List<CustomerDto> listCustomers() {
         List<CustomerDto> customerDtoCustomer = new ArrayList<>();
         Iterable<Customer> customers = customerRepository.findAll();
@@ -25,6 +34,7 @@ public class CustomerService {
         }
         return customerDtoCustomer;
     }
+
     public Long add(CustomerDto customer) {
         Customer user1 = Customer.builder()
                 .firstName(customer.getFirstName())
@@ -33,10 +43,12 @@ public class CustomerService {
                 .email(customer.getEmail())
                 .age(customer.getAge())
                 .kids(customer.getKids())
+                .customerStatus(customer.getCustomerStatus())
                 .build();
         customerRepository.save(user1);
         return user1.getId();
     }
+
     public void update(CustomerDto customerDto) {
         Optional<Customer> optionalCustomer = customerRepository.findById(customerDto.getId());
         if (optionalCustomer.isPresent()) {
@@ -51,6 +63,7 @@ public class CustomerService {
             customerRepository.save(customer);
         }
     }
+
     public void delete(Long customerId) {
         customerRepository.deleteById(customerId);
     }
