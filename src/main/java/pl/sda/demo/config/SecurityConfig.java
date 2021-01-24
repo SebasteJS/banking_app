@@ -1,4 +1,5 @@
 package pl.sda.demo.config;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -8,9 +9,19 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import pl.sda.demo.repository.UserRepository;
+import pl.sda.demo.service.UserService;
+
 import javax.sql.DataSource;
+
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+//    @Autowired
+//    UserRepository userRepository;
+//
+//    @Autowired
+//    UserService userService;
+
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -26,27 +37,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login*").permitAll()
                 .antMatchers("/regist*").permitAll()
                 .antMatchers("/users").permitAll()
+                .antMatchers("/customers_admin").access("hasRole('ROLE_ADMIN')")
                 .anyRequest().authenticated();
         http.formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .usernameParameter("login")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/advisor-panel", true);
+                .defaultSuccessUrl("/advisor-panel", true);  //  + userRepository.findById(userService.getCurrentID()
         http.csrf().disable()
                 .headers().frameOptions().disable();
         http.logout()
                 .logoutSuccessUrl("/login")
                 .logoutUrl("/logout");
     }
+
     @Override
     public void configure(WebSecurity web) {
         web
                 .ignoring()
                 .antMatchers("/resources/**", "/css/**", "/js/**", "/img/**", "/icon/**");
     }
+
     @Autowired
     private DataSource dataSource;
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
@@ -58,6 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "WHERE u.login=?")
                 .dataSource(dataSource);
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

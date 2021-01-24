@@ -50,7 +50,7 @@ public class DatabaseInitializationService implements CommandLineRunner {
         Role adminRole = roleRepository.findByType(RoleType.ADMIN);
 
 
-        userRepository.save(new User(null, "Marcin", "Kwiatkowski", "innyLogin", PasswordEncoder.encode("password"), Arrays.asList(advisorRole), new ArrayList<>()));
+        userRepository.save(new User(null, "Marcin", "Kwiatkowski", "innyLogin", PasswordEncoder.encode("password"), Arrays.asList(advisorRole, clientRole), new ArrayList<>()));
         userRepository.save(new User(null, "Tomek", "ASD", "loginJakis", PasswordEncoder.encode("Innehaslo"), Arrays.asList(clientRole), new ArrayList<>()));
         userRepository.save(new User(null, "Kasia", "Nowak", "looogin", PasswordEncoder.encode("haslo3"), Arrays.asList(clientRole), null));
         userRepository.save(new User(null, "SWA", "SWA", "SWA", PasswordEncoder.encode("SWA"), Arrays.asList(adminRole), null));

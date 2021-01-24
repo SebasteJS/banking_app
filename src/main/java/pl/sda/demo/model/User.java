@@ -39,6 +39,6 @@ public class User {
     private List<Role> roles;
 
     @OneToMany
-    @JoinColumn(name = "customer_id", referencedColumnName = "user_id")
+    @JoinTable(name = "user_to_customer", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "customer_id")})
     private List<Customer> customers;
 }

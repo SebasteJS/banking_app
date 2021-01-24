@@ -7,4 +7,5 @@ import pl.sda.demo.model.CustomerIncome;
 @Repository
 public interface CustomerIncomeRepository extends JpaRepository<CustomerIncome, Long> {
 
+
 }

@@ -17,7 +17,7 @@ import java.util.List;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "customer_id")
     private Long id;
 
     @Column(name = "first_name")
@@ -41,8 +41,8 @@ public class Customer {
     @Column(name = "customer_status")
     private String customerStatus; //status klienta - 1. prospect, 2. złożont wniosek; //TODO przerobić na enum
 
-    @ManyToOne
-    private User financeAdvisor;
+//    @ManyToOne
+//    private User financeAdvisor;
 
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
     private Credit credit;
@@ -60,7 +60,7 @@ public class Customer {
     private Broker broker;
 
     @OneToMany
-    @JoinColumn(name = "notes_id", referencedColumnName = "id")
+    @JoinColumn(name = "notes_id", referencedColumnName = "customer_id")
     private List<Notes> notes;
 
 

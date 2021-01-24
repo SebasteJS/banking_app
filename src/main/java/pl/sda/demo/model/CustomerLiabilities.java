@@ -30,6 +30,6 @@ public class CustomerLiabilities {
     private double childSupport;
 
     @OneToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     private Customer customer;
 }

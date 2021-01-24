@@ -11,7 +11,6 @@ import pl.sda.demo.service.UserService;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
-
     private final UserService userService;
 
     @Secured("ROLE_ADMIN")

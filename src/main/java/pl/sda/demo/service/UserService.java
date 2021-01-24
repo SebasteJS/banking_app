@@ -11,15 +11,24 @@ import pl.sda.demo.model.type.RoleType;
 import pl.sda.demo.repository.RoleRepository;
 import pl.sda.demo.repository.UserRepository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
+
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+    private Long currentID = 0L;
+
+    public Long getCurrentID() {
+        return currentID;
+    }
 
     public Long add(UserDto userDto) {
         List<Role> roles = userDto.getRoles();
@@ -27,8 +36,6 @@ public class UserService {
             Role role = new Role(RoleType.CLIENT);
             roleRepository.save(role);
             roles = Collections.singletonList(role);
-
-
         }
         User user1 = User.builder()
                 .firstName(userDto.getFirstName())
@@ -37,7 +44,7 @@ public class UserService {
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .roles(roles)
                 .build();
-
+        currentID = user1.getId();
         userRepository.save(user1);
         return user1.getId();
     }
@@ -79,6 +86,8 @@ public class UserService {
     public void delete(Long userId) {
         userRepository.deleteById(userId);
     }
+
+
 }
 
 
