@@ -13,17 +13,20 @@ import javax.validation.Valid;
 @Controller
 @RequiredArgsConstructor
 public class RegistrationController {
+
     private final UserService userService;
+
+
     @GetMapping("/registration")
     public String registration(Model model) {
-        model.addAttribute("user", new UserDto());
+        model.addAttribute("user", new UserDto());// musi byc bo jest atrybut w html'ce
         return "registration-form";
     }
     @PostMapping("/registration")
     public String registrationAdding(@ModelAttribute("user") @Valid UserDto user2,
                                      BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
-            userService.add(user2);// nie zapisuje do bazy nie wiem czemu
+            userService.add(user2);
             return "login-form";
         }
         return "registration-form";

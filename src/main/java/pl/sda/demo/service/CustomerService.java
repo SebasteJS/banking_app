@@ -5,13 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.demo.dto.CustomerDto;
 import pl.sda.demo.model.Customer;
-import pl.sda.demo.model.User;
 import pl.sda.demo.repository.CustomerRepository;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +17,9 @@ public class CustomerService {
     @Autowired
     CustomerRepository customerRepository;
 
-    User user = new User();
+    private final List<Long> listaId = new ArrayList<>();
+    private List<Customer> customerListIds = new ArrayList<>();
+
 
     public List<CustomerDto> listCustomers() {
         List<CustomerDto> customerDtoCustomer = new ArrayList<>();
@@ -41,8 +40,9 @@ public class CustomerService {
 
 
     public List<Customer> findCustomersForUser() {
+
         List<Customer> customerList = new ArrayList<>();
-        Iterable<Customer> customers = customerRepository.findAllById(Collections.singletonList(user.getId()));
+        Iterable<Customer> customers = customerRepository.findAll();
         for (Customer customer2 : customers) {
             customerList.add(
                     Customer.builder()
@@ -54,13 +54,41 @@ public class CustomerService {
                             .kids(customer2.getKids())
                             .customerStatus(customer2.getCustomerStatus())
                             .build());
-            customerRepository.findById(customer2.getId());
+//            customerRepository.findById(customer2.getId());
         }
-        return customerList;
+        if (customer1 != null) {
+
+            listaId.add(customer1.getId());
+            Iterator<Long> iteratorId = listaId.listIterator();
+//            customerListIds.add(customerRepository.findById(iteratorId.next()));
+
+
+/////////////////////////////////////////////////////////////////////////
+            return customerListIds = customerRepository.findById(iteratorId.next()).stream().collect(Collectors.toList());
+            ////////////////////////////////////////////////////////////////////////////
+
+
+            //////////////////////////////////////////////////////////////////////////////////////////
+//            public static<Customer> List<Customer> toList(Optional<Customer> opt) {
+//                return opt
+//                        .map(Collections::singletonList)
+//                        .orElseGet(Collections::emptyList);
+//            }
+
+
+            ////////////////////////////////
+//            return customerList = customerRepository.findAllById(Collections.singletonList(customer1.getId()));
+//        } else
+//            return customerList;
+        }else
+            return customerList;
     }
 
+
+    Customer customer1;
+
     public Long add(CustomerDto customer) {
-        Customer user1 = Customer.builder()
+        customer1 = Customer.builder()
                 .firstName(customer.getFirstName())
                 .lastName(customer.getLastName())
                 .phone(customer.getPhone())
@@ -69,8 +97,8 @@ public class CustomerService {
                 .kids(customer.getKids())
                 .customerStatus(customer.getCustomerStatus())
                 .build();
-        customerRepository.save(user1);
-        return user1.getId();
+        customerRepository.save(customer1);
+        return customer1.getId();
     }
 
 

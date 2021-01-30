@@ -24,11 +24,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
-    private Long currentID = 0L;
 
-    public Long getCurrentID() {
-        return currentID;
-    }
 
     public Long add(UserDto userDto) {
         List<Role> roles = userDto.getRoles();
@@ -37,14 +33,16 @@ public class UserService {
             roleRepository.save(role);
             roles = Collections.singletonList(role);
         }
+
+
         User user1 = User.builder()
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
                 .login(userDto.getLogin())
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .roles(roles)
+                .customers(userDto.getCustomers())//////////pomysl czy tak ma  byc
                 .build();
-        currentID = user1.getId();
         userRepository.save(user1);
         return user1.getId();
     }
@@ -58,11 +56,8 @@ public class UserService {
                     UserDto.builder()
                             .firstName(users2.getFirstName())
                             .lastName(users2.getLastName())
-//                            .login(users2.getLogin())
-//                            .password(users2.getPassword())
                             .roles(users2.getRoles())
                             .build());
-
         }
         return userDtoUser;
     }
@@ -77,7 +72,7 @@ public class UserService {
             user.setRoles(userDto.getRoles());
             user.setLogin(userDto.getLogin());
             user.setPassword(userDto.getPassword());
-
+            user.setCustomers(userDto.getCustomers());////////pomysl czy tak ma byc
             userRepository.save(user);
         }
     }
@@ -86,8 +81,6 @@ public class UserService {
     public void delete(Long userId) {
         userRepository.deleteById(userId);
     }
-
-
 }
 
 

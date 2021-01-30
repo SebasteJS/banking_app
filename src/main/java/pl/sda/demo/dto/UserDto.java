@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.sda.demo.model.Customer;
 import pl.sda.demo.model.Role;
 
 import javax.validation.constraints.NotEmpty;
@@ -33,6 +34,9 @@ public class UserDto implements Serializable {
     @Size(min = 6, message = "password must be at least 6 characters long")
     private String password;
 
+    @NotEmpty
     private List<Role> roles;
+
+    private List<Customer> customers;
 
 }

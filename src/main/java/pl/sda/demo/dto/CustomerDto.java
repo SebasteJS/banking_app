@@ -21,7 +21,7 @@ public class CustomerDto {
     private String lastName;
 
     @NotEmpty
-//    @Size(min = 9, message = "phone no. must be at least 9 digits long")
+    @Size(min = 9, message = "phone no. must be at least 9 digits long")
     private String phone;
 
     @NotEmpty

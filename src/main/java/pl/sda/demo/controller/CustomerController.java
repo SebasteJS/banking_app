@@ -2,6 +2,7 @@ package pl.sda.demo.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,41 +18,46 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 
 @Controller
-//@RequestMapping("/customers") nie trzeba bo mamy w post i get wypisane adresy
 @RequiredArgsConstructor
+//@RequestMapping("/customers") nie trzeba bo mamy w post i get wypisane adresy
+//@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ADVISOR')")// robi to samo co @Secured mniej wiecej
 public class CustomerController {
+
     private final CustomerService customerService;
     private final CustomerRepository customerRepository;
 
-    @Secured({"ROLE_ADVISOR", "CLIENT"})//
-    @GetMapping("/customers")
+
+    @Secured({"ROLE_ADVISOR", "ROLE_CLIENT"})// albo to albo @preauthorize na gorze
+    @GetMapping("/customers")//bez tego kontrolra wyswietli customersow dobrze
     public String customers(Model model) {
         if (!customerService.findCustomersForUser().isEmpty() || customerService.findCustomersForUser().size() != 0) {
             model.addAttribute("customers", customerService.findCustomersForUser());
             model.addAttribute("customer", new Customer());
         }
-        if(customerService.findCustomersForUser().isEmpty() || customerService.findCustomersForUser().size() == 0) {
+        if (customerService.findCustomersForUser().isEmpty() || customerService.findCustomersForUser().size() == 0) {
             model.addAttribute("customers", new ArrayList<Customer>());
             model.addAttribute("customer", new Customer());
         }
         return "customers";
     }
 
- @Secured({"ROLE_ADMIN"})//
-    @GetMapping("/customers_admin")
+
+    @Secured({"ROLE_ADMIN"})//
+    @GetMapping("/customers-admin")// tu zmienilem z customers_admin na customers by wyswietlilo ustomersow
     public String customersAdmin(Model model) {
         if (!customerRepository.findAll().isEmpty() || customerRepository.findAll().size() != 0) {
             model.addAttribute("customers", customerService.listCustomers());
             model.addAttribute("customer", new CustomerDto());
         }
-        if(customerRepository.findAll().isEmpty() || customerRepository.findAll().size() == 0) {
+        if (customerRepository.findAll().isEmpty() || customerRepository.findAll().size() == 0) {
             model.addAttribute("customers", new ArrayList<CustomerDto>());
             model.addAttribute("customer", new CustomerDto());
         }
         return "customers";
     }
 
-    @Secured({"ROLE_ADVISOR", "CLIENT"})
+
+    @Secured({"ROLE_ADVISOR", "ROLE_CLIENT"})
     @PostMapping("customers/add")
     public String addCustomer(@ModelAttribute("customer") @Valid CustomerDto customer, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
@@ -61,7 +67,8 @@ public class CustomerController {
         return "customers";
     }
 
-    @Secured({"ROLE_ADVISOR", "CLIENT"})
+
+    @Secured({"ROLE_ADVISOR", "ROLE_CLIENT"})
     @PostMapping("customers/update")
     public String updateCustomer(@ModelAttribute("customer") @Valid CustomerDto customer, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
@@ -71,7 +78,8 @@ public class CustomerController {
         return "customers";
     }
 
-    @Secured({"ROLE_ADVISOR", "CLIENT"})
+
+    @Secured({"ROLE_ADVISOR", "ROLE_CLIENT"})
     @PostMapping("customers/delete")
     public String deleteCustomer(@ModelAttribute("customer") @Valid CustomerDto customer) {
         customerService.delete(customer.getId());

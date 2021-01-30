@@ -26,18 +26,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/resources/**").permitAll()
-                .antMatchers("/advisor_panel").access("hasRole('ROLE_ADVISOR')")// tu pomyslec
+                .antMatchers("/advisor_panel").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")//pozniej usunac client
                 .antMatchers("/broker").access("hasRole('ROLE_ADVISOR')")
                 .antMatchers("/client").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
                 .antMatchers("/credit").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
-                .antMatchers("/customer").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
+                .antMatchers("/customers").permitAll()// to to samo co brak tego matchera
+//                .antMatchers("/customers").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
                 .antMatchers("/clientIncome").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
                 .antMatchers("/clientLiabilities/").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
                 .antMatchers("/clientLiabilities/**").access("hasRole('ROLE_ADVISOR') or hasRole('ROLE_CLIENT')")
                 .antMatchers("/login*").permitAll()
                 .antMatchers("/regist*").permitAll()
                 .antMatchers("/users").permitAll()
-                .antMatchers("/customers_admin").access("hasRole('ROLE_ADMIN')")
+//                .antMatchers("/customers-admin").access("hasRole('ROLE_ADMIN')")
                 .anyRequest().authenticated();
         http.formLogin()
                 .loginPage("/login")
