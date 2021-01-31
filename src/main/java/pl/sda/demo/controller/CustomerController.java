@@ -62,6 +62,7 @@ public class CustomerController {
     public String addCustomer(@ModelAttribute("customer") @Valid CustomerDto customer, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             customerService.add(customer);
+
             return "advisor-panel";
         }
         return "customers";

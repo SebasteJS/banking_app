@@ -6,9 +6,12 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import pl.sda.demo.config.SecurityConfig;
+import pl.sda.demo.dto.CustomerDto;
 import pl.sda.demo.logic.CreditRateAndInterestsSimulator;
 import pl.sda.demo.model.Credit;
+import pl.sda.demo.model.Customer;
 import pl.sda.demo.model.User;
+import pl.sda.demo.service.CustomerService;
 
 @SpringBootApplication
 @EntityScan("pl.sda.demo.model")
@@ -28,7 +31,17 @@ public class DemoApplication {
         simulator.calculateAll(credit1);
         simulator.showInfo();
 
-
+//        CustomerDto customerTest = new CustomerDto();
+//        customerTest.setAge(30);
+//        customerTest.setCustomerStatus("jakiś");
+//        customerTest.setEmail("jakiś@email.com");
+//        customerTest.setKids(0);
+//        customerTest.setFirstName("Ewa");
+//        customerTest.setLastName("Nowaczek");
+//        customerTest.setPhone("321654987");
+//
+//        CustomerService customerService = new CustomerService();
+//        customerService.add(customerTest);
 
 //        simulator.setTerm(credit1);
 //

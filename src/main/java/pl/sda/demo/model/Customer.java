@@ -63,6 +63,12 @@ public class Customer {
     @JoinColumn(name = "notes_id", referencedColumnName = "customer_id")
     private List<Notes> notes;
 
+    @ManyToOne
+    @JoinTable(name = "user_to_customer",
+            joinColumns = {@JoinColumn(name = "customer_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")})
+    private User user;
+
 
 
 //    @OneToOne(cascade = CascadeType.ALL)

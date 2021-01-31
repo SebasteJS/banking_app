@@ -63,15 +63,30 @@ public class DatabaseInitializationService implements CommandLineRunner {
                 .build();
         customerRepository.save(cust);
 
+        Customer cust2 = Customer.builder()
+                .age(30)
+                .email("krzyhoooooo.91@o2.pl")
+                .kids(2)
+                .lastName("Nowak")
+                .firstName("jan")
+                .phone("999999999")
+                .customerStatus("oczekujący")
+                .build();
+        customerRepository.save(cust2);
+
+        List<Customer> testCustomersList = new ArrayList<>();
+        testCustomersList.add(cust);
+        testCustomersList.add(cust2);
+
 
         userRepository.save(new User(null, "Marcin", "Kwiatkowski", "innyLogin",
                 PasswordEncoder.encode("password"), Arrays.asList(advisorRole, clientRole, adminRole),
-                Collections.singletonList(cust)));
+                testCustomersList));
 
 
-        userRepository.save(new User(null, "Tomek", "ASD", "loginJakis",
-                PasswordEncoder.encode("Innehaslo"), Arrays.asList(clientRole),
-                customerService.findCustomersForUser()));
+//        userRepository.save(new User(null, "Tomek", "ASD", "loginJakis",
+//                PasswordEncoder.encode("Innehaslo"), Arrays.asList(clientRole),
+//                customerService.findCustomersForUser()));
 
 
     }
