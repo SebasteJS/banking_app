@@ -39,10 +39,12 @@ public class CustomerService {
     }
 
 
+    List<Customer> customerList = new ArrayList<>();
+
     public List<Customer> findCustomersForUser() {
 
-        List<Customer> customerList = new ArrayList<>();
-        Iterable<Customer> customers = customerRepository.findAll();
+
+        Iterable<Customer> customers = customerRepository.findAllById(listaId);
         for (Customer customer2 : customers) {
             customerList.add(
                     Customer.builder()
@@ -54,33 +56,26 @@ public class CustomerService {
                             .kids(customer2.getKids())
                             .customerStatus(customer2.getCustomerStatus())
                             .build());
-//            customerRepository.findById(customer2.getId());
         }
+
+
+        customerList = customerRepository.findAll(); //dfodaje wszystkich customerów, a nie tylko należących do usera
+
+
         if (customer1 != null) {
 
             listaId.add(customer1.getId());
-            Iterator<Long> iteratorId = listaId.listIterator();
-//            customerListIds.add(customerRepository.findById(iteratorId.next()));
+            customerListIds = customerRepository.findAllById(listaId);
 
+            if (!customerList.contains(customer1)) {
+                customerListIds.addAll(customerList);
+                System.out.println("Lista customerListIds");
+                System.out.println(customerListIds);
+                return customerListIds;
+            } else
+                return customerListIds;
 
-/////////////////////////////////////////////////////////////////////////
-            return customerListIds = customerRepository.findById(iteratorId.next()).stream().collect(Collectors.toList());
-            ////////////////////////////////////////////////////////////////////////////
-
-
-            //////////////////////////////////////////////////////////////////////////////////////////
-//            public static<Customer> List<Customer> toList(Optional<Customer> opt) {
-//                return opt
-//                        .map(Collections::singletonList)
-//                        .orElseGet(Collections::emptyList);
-//            }
-
-
-            ////////////////////////////////
-//            return customerList = customerRepository.findAllById(Collections.singletonList(customer1.getId()));
-//        } else
-//            return customerList;
-        }else
+        } else
             return customerList;
     }
 

@@ -13,6 +13,9 @@ import pl.sda.demo.model.Customer;
 import pl.sda.demo.model.User;
 import pl.sda.demo.service.CustomerService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SpringBootApplication
 @EntityScan("pl.sda.demo.model")
 @EnableJpaRepositories("pl.sda.demo.repository")
@@ -28,20 +31,7 @@ public class DemoApplication {
         credit1.setInterestRate(3);
         CreditRateAndInterestsSimulator simulator = new CreditRateAndInterestsSimulator();
 
-        simulator.calculateAll(credit1);
-        simulator.showInfo();
 
-//        CustomerDto customerTest = new CustomerDto();
-//        customerTest.setAge(30);
-//        customerTest.setCustomerStatus("jakiś");
-//        customerTest.setEmail("jakiś@email.com");
-//        customerTest.setKids(0);
-//        customerTest.setFirstName("Ewa");
-//        customerTest.setLastName("Nowaczek");
-//        customerTest.setPhone("321654987");
-//
-//        CustomerService customerService = new CustomerService();
-//        customerService.add(customerTest);
 
 //        simulator.setTerm(credit1);
 //

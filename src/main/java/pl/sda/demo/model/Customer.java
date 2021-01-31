@@ -69,9 +69,16 @@ public class Customer {
             inverseJoinColumns = {@JoinColumn(name = "user_id")})
     private User user;
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 
-
-//    @OneToOne(cascade = CascadeType.ALL)
+    //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "credit_id", referencedColumnName = "id")
 //    private Credit credit;
 }
