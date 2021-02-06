@@ -66,6 +66,7 @@
                 <th>Dzieci</th>
                 <th>Status klienta</th>
                 <th>Wysokość kredytu</th>
+                <th>Dochód netto</th>
             </tr>
 
             <div class="list-group">
@@ -78,6 +79,7 @@
                         <td th:text="${customer.age}"></td>
                         <td th:text="${customer.kids}"></td>
                         <td th:text="${customer.customerStatus}"></td>
+                        <td th:text="${customer.customerIncome.netIncome}"></td>
                     </tr>
                 </th:block>
             </div>

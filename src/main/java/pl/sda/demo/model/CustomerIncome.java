@@ -38,5 +38,6 @@ public class CustomerIncome {
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     private Customer customer;
 
+
 }
 

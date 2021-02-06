@@ -367,20 +367,24 @@
                     </div>
                 </fieldset>
             </form>
-<!--            <form class="form-horizontal" method="post" th:action="@{/customers/add}" th:object="${customerIncome}">-->
-<!--                <fieldset>-->
 
-<!--                    <div class="control-group">-->
-<!--                        <label class="control-label" for="netIncome">Dochód netto</label>-->
-<!--                        <div class="controls">-->
-<!--                            <input type="number" id="netIncome"-->
-<!--                                   name="netIncome" placeholder="" class="input-xlarge"-->
-<!--                                   th:field="*{netIncome}">-->
-<!--                        </div>-->
-<!--                    </div>-->
 
-<!--                </fieldset>-->
-<!--            </form>-->
+            <form class="form-horizontal" method="post" th:action="@{/customers/add}" th:object="${customerIncome}">
+                <fieldset>
+
+                    <div class="control-group">
+                        <label class="control-label" for="netIncome">Dochód netto</label>
+                        <div class="controls">
+                            <input type="number" id="netIncome"
+                                   name="netIncome" placeholder="" class="input-xlarge"
+                                   th:field="*{netIncome}">
+                        </div>
+                    </div>
+
+
+
+                </fieldset>
+            </form>
         </div>
     </div>
 </div>

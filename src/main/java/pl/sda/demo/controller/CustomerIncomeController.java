@@ -32,7 +32,7 @@ public class CustomerIncomeController {
 
 
     //    @Secured({"ROLE_ADVISOR"})
-    @PostMapping("/customersIncome/add")
+    @PostMapping("/customers/add")
     public String customerIncomeAdding(Model model, @ModelAttribute("customerIncome") @Valid CustomerIncomeDto user2, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             customerIncomeService.add(user2);

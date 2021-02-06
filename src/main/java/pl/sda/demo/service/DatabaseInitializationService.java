@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import pl.sda.demo.model.Customer;
+import pl.sda.demo.model.CustomerIncome;
 import pl.sda.demo.model.Role;
 import pl.sda.demo.model.User;
 import pl.sda.demo.repository.CustomerRepository;
@@ -71,6 +72,7 @@ public class DatabaseInitializationService implements CommandLineRunner {
                 .firstName("jan")
                 .phone("999999999")
                 .customerStatus("oczekujący")
+                .customerIncome(new CustomerIncome(3000.0, true, true, true, "",cust))
                 .build();
         customerRepository.save(cust2);
 
