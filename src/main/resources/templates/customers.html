@@ -7,50 +7,88 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body style="background-color:#ADD8E6">
+<body>
 
 <div class="container">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/advisor-panel">Panel doradcy</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <br/>
-    <h3 class="h3">Klienci:</h3>
-    <table class="table table-striped">
-        <tr class="table-striped">
-            <th>Imię</th>
-            <th>Nazwisko</th>
-            <th>Numer telefonu</th>
-            <th>Email</th>
-            <th>Wiek</th>
-            <th>Dzieci</th>
-            <th>Status klienta</th>
-            <th>Przychód netto</th>
-            <th>Umowa na stałe</th>
-            <th>Samozatrudnienie</th>
-            <th>Forma rozliczenia</th>
-            <th>Karty kredytowe</th>
-            <th>Wysokość debetu</th>
-            <th>Dodatek na dzieci</th>
-            <th>Cena nieruchomości</th>
-            <th>Rynek pierwotny</th>
-            <th>Prawo własności</th>
-            <th>Typ nieruchomości</th>
-            <th>Wysokość kredytu</th>
-            <th>Okres kredytowania</th>
-        </tr>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/customers">Dodaj klienta <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/brokers">Przejdź do bazy brokerów</a>
+                </li>
+                <!--            <li class="nav-item dropdown">-->
+                <!--                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"-->
+                <!--                   aria-haspopup="true" aria-expanded="false">-->
+                <!--                    Dropdown-->
+                <!--                </a>-->
+                <!--                <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+                <!--                    <a class="dropdown-item" href="#">Action</a>-->
+                <!--                    <a class="dropdown-item" href="#">Another action</a>-->
+                <!--                    <div class="dropdown-divider"></div>-->
+                <!--                    <a class="dropdown-item" href="#">Something else here</a>-->
+                <!--                </div>-->
+                <!--            </li>-->
+                <!--            <li class="nav-item">-->
+                <!--                <a class="nav-link disabled" href="#">Disabled</a>-->
+                <!--            </li>-->
+            </ul>
+        </div>
+    </nav>
+
+</div>
+
+<br>
+<div class="container">
+
+<!--    <br/>-->
+<!--    <h3 class="h3">Klienci:</h3>-->
+<!--    <table class="table table-striped">-->
+<!--        <tr class="table-striped">-->
+<!--            <th>Imię</th>-->
+<!--            <th>Nazwisko</th>-->
+<!--            <th>Numer telefonu</th>-->
+<!--            <th>Email</th>-->
+<!--            <th>Wiek</th>-->
+<!--            <th>Dzieci</th>-->
+<!--            <th>Status klienta</th>-->
+<!--            <th>Przychód netto</th>-->
+<!--            <th>Umowa na stałe</th>-->
+<!--            <th>Samozatrudnienie</th>-->
+<!--            <th>Forma rozliczenia</th>-->
+<!--            <th>Karty kredytowe</th>-->
+<!--            <th>Wysokość debetu</th>-->
+<!--            <th>Dodatek na dzieci</th>-->
+<!--            <th>Cena nieruchomości</th>-->
+<!--            <th>Rynek pierwotny</th>-->
+<!--            <th>Prawo własności</th>-->
+<!--            <th>Typ nieruchomości</th>-->
+<!--            <th>Wysokość kredytu</th>-->
+<!--            <th>Okres kredytowania</th>-->
+<!--        </tr>-->
 
 
 
-        <th:block th:each="customer : ${customers}">
-            <tr>
-                <td th:text="${customer.firstName}"></td>
-                <td th:text="${customer.lastName}"></td>
-                <td th:text="${customer.phone}"></td>
-                <td th:text="${customer.email}"></td>
-                <td th:text="${customer.age}"></td>
-                <td th:text="${customer.kids}"></td>
-                <td th:text="${customer.customerStatus}"></td>
+<!--        <th:block th:each="customer : ${customers}">-->
+<!--            <tr>-->
+<!--                <td th:text="${customer.firstName}"></td>-->
+<!--                <td th:text="${customer.lastName}"></td>-->
+<!--                <td th:text="${customer.phone}"></td>-->
+<!--                <td th:text="${customer.email}"></td>-->
+<!--                <td th:text="${customer.age}"></td>-->
+<!--                <td th:text="${customer.kids}"></td>-->
+<!--                <td th:text="${customer.customerStatus}"></td>-->
 
-            </tr>
-        </th:block>
+<!--            </tr>-->
+<!--        </th:block>-->
 <!--        <th:block th:each="customerIncome : ${customersIncome}">-->
 <!--            <tr>-->
 
@@ -69,7 +107,7 @@
 <!--                <td th:text="${customer.credit.creditPeriod}"></td>-->
 <!--            </tr>-->
 <!--        </th:block>-->
-    </table>
+<!--    </table>-->
 
 
     <div class="container">

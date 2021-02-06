@@ -43,7 +43,6 @@ public class CustomerService {
 
     public List<Customer> findCustomersForUser() {
 
-
         Iterable<Customer> customers = customerRepository.findAllById(listaId);
         for (Customer customer2 : customers) {
             customerList.add(
