@@ -21,6 +21,11 @@ public class FinancialAdvisorController {
 
     @GetMapping({"/", "/advisor-panel"})  // będzie advisor-panel + ID usera
     public String mainPage(Model model) {
+        checkingIfListIsNull(model, customerService);
+        return "advisor-panel";
+    }
+
+    static void checkingIfListIsNull(Model model, CustomerService customerService) {
         if (!customerService.findCustomersForUser().isEmpty() || customerService.findCustomersForUser().size() != 0) {
             model.addAttribute("customers", customerService.findCustomersForUser());
             model.addAttribute("customer", new Customer());
@@ -29,6 +34,5 @@ public class FinancialAdvisorController {
             model.addAttribute("customers", new ArrayList<Customer>());
             model.addAttribute("customer", new Customer());
         }
-        return "advisor-panel";
     }
 }

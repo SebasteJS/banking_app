@@ -30,14 +30,7 @@ public class CustomerController {
     @Secured({"ROLE_ADVISOR", "ROLE_CLIENT"})// albo to albo @preauthorize na gorze
     @GetMapping("/customers")//bez tego kontrolra wyswietli customersow dobrze
     public String customers(Model model) {
-        if (!customerService.findCustomersForUser().isEmpty() || customerService.findCustomersForUser().size() != 0) {
-            model.addAttribute("customers", customerService.findCustomersForUser());
-            model.addAttribute("customer", new Customer());
-        }
-        if (customerService.findCustomersForUser().isEmpty() || customerService.findCustomersForUser().size() == 0) {
-            model.addAttribute("customers", new ArrayList<Customer>());
-            model.addAttribute("customer", new Customer());
-        }
+        FinancialAdvisorController.checkingIfListIsNull(model, customerService);
         return "customers";
     }
 
@@ -62,7 +55,6 @@ public class CustomerController {
     public String addCustomer(@ModelAttribute("customer") @Valid CustomerDto customer, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             customerService.add(customer);
-
             return "advisor-panel";
         }
         return "customers";
