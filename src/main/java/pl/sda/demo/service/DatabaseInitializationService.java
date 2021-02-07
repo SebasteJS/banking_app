@@ -54,6 +54,14 @@ public class DatabaseInitializationService implements CommandLineRunner {
         Role clientRole = roleRepository.findByType(RoleType.CLIENT);
         Role adminRole = roleRepository.findByType(RoleType.ADMIN);
 
+        CustomerIncome cI1 = CustomerIncome.builder()
+                .netIncome(3000.75)
+                .isContractOfEmployment(true)
+                .isIndefiniteContract(true)
+                .isSelfEmployed(false)
+                .formOfSettlement("")
+                .build();
+        customerIncomeRepository.save(cI1);
 
         Customer cust = Customer.builder()
                 .age(20)
@@ -63,6 +71,7 @@ public class DatabaseInitializationService implements CommandLineRunner {
                 .firstName("jan")
                 .phone("999999999")
                 .customerStatus("oczekujący")
+                .customerIncome(cI1)
                 .build();
         customerRepository.save(cust);
 
