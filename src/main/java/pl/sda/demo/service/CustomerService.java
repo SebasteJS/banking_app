@@ -4,7 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.demo.dto.CustomerDto;
+import pl.sda.demo.dto.CustomerIncomeDto;
 import pl.sda.demo.model.Customer;
+import pl.sda.demo.model.CustomerIncome;
+import pl.sda.demo.repository.CustomerIncomeRepository;
 import pl.sda.demo.repository.CustomerRepository;
 
 import java.util.*;
@@ -16,6 +19,9 @@ public class CustomerService {
 
     @Autowired
     CustomerRepository customerRepository;
+
+    @Autowired
+    CustomerIncomeRepository customerIncomeRepository;
 
     private final List<Long> listaId = new ArrayList<>();
     private List<Customer> customerListIds = new ArrayList<>();
@@ -80,8 +86,16 @@ public class CustomerService {
 
 
     Customer customer1;
+    CustomerIncome customerIncome1;
 
-    public Long add(CustomerDto customer) {
+    public Long add(CustomerDto customer, CustomerIncomeDto customerIncomeDto) {
+        customerIncome1 = CustomerIncome.builder()
+                .netIncome(customerIncomeDto.getNetIncome())
+                .build();
+        customerIncomeRepository.save(customerIncome1);
+
+
+
         customer1 = Customer.builder()
                 .firstName(customer.getFirstName())
                 .lastName(customer.getLastName())
@@ -90,6 +104,7 @@ public class CustomerService {
                 .age(customer.getAge())
                 .kids(customer.getKids())
                 .customerStatus(customer.getCustomerStatus())
+                .customerIncome(customerIncome1)
                 .build();
         customerRepository.save(customer1);
         return customer1.getId();
@@ -103,10 +118,11 @@ public class CustomerService {
             customer.setFirstName(customerDto.getFirstName());
             customer.setLastName(customerDto.getLastName());
             customer.setPhone(customerDto.getPhone());
-            customer.setAge(customerDto.getAge());
             customer.setEmail(customerDto.getEmail());
+            customer.setAge(customerDto.getAge());
             customer.setKids(customerDto.getKids());
             customer.setCustomerStatus(customerDto.getCustomerStatus());
+            customer.setCustomerIncome(customerDto.getCustomerIncome());
             customerRepository.save(customer);
         }
     }

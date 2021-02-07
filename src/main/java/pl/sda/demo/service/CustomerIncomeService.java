@@ -19,8 +19,10 @@ public class CustomerIncomeService {
     public Long add(CustomerIncomeDto customerIncomeDto) {
         CustomerIncome customerIncome1 = CustomerIncome.builder()
                 .netIncome(customerIncomeDto.getNetIncome())
-                .isIndefiniteContract(customerIncomeDto.isIndefiniteContract())
-                .isSelfEmployed(customerIncomeDto.isSelfEmployed())
+//                .isContractOfEmployment(customerIncomeDto.isContractOfEmployment())
+//                .isIndefiniteContract(customerIncomeDto.isIndefiniteContract())
+//                .isSelfEmployed(customerIncomeDto.isSelfEmployed())
+//                .formOfSettlement(customerIncomeDto.getFormOfSettlement())
                 .build();
         customerIncomeRepository.save(customerIncome1);
         return customerIncomeRepository.save(customerIncome1).getId();
@@ -33,8 +35,10 @@ public class CustomerIncomeService {
             customerIncomeDtoUser.add(
                     CustomerIncomeDto.builder()
                             .netIncome(customerIncomes2.getNetIncome())
-                            .isIndefiniteContract(customerIncomes2.isIndefiniteContract())
-                            .isSelfEmployed(customerIncomes2.isSelfEmployed())
+//                            .isContractOfEmployment(customerIncomes2.isContractOfEmployment())
+//                            .isIndefiniteContract(customerIncomes2.isIndefiniteContract())
+//                            .isSelfEmployed(customerIncomes2.isSelfEmployed())
+//                            .formOfSettlement(customerIncomes2.getFormOfSettlement())
                             .build());
         }
         return customerIncomeDtoUser;

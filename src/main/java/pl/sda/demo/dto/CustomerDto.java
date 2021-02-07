@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.sda.demo.model.CustomerIncome;
 
 import javax.validation.constraints.*;
 @Data
@@ -37,7 +38,10 @@ public class CustomerDto {
     @Min(0)
     private int kids;
 
-    @NotEmpty
+//    @NotEmpty
     private String customerStatus;
+
+    @NotEmpty
+    private CustomerIncome customerIncome;
 
 }

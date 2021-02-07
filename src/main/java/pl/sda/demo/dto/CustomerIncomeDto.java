@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -15,19 +16,19 @@ public class CustomerIncomeDto {
 
     private Long id;
 
-    @NotEmpty
+//    @NotNull
     private double netIncome;
 
-    @NotEmpty
+//    @NotEmpty
     private boolean isContractOfEmployment;
 
-    @NotEmpty
+//    @NotEmpty
     private boolean isIndefiniteContract;
 
-    @NotEmpty
+//    @NotEmpty
     private boolean isSelfEmployed;     // if true wtedy czy kpir, karta, ryczałt
 
-    @NotEmpty
+//    @NotEmpty
     private String formOfSettlement;    //albo kpir, ryczalt karta podatkowa
 }
 

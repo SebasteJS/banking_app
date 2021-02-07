@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.sda.demo.dto.CustomerDto;
+import pl.sda.demo.dto.CustomerIncomeDto;
 import pl.sda.demo.model.Customer;
 import pl.sda.demo.repository.CustomerRepository;
 import pl.sda.demo.service.CustomerService;
@@ -52,9 +53,9 @@ public class CustomerController {
 
     @Secured({"ROLE_ADVISOR", "ROLE_CLIENT"})
     @PostMapping("customers/add")
-    public String addCustomer(@ModelAttribute("customer") @Valid CustomerDto customer, BindingResult bindingResult) {
+    public String addCustomer(@ModelAttribute("customer") @Valid CustomerDto customer, CustomerIncomeDto customerIncomeDto, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
-            customerService.add(customer);
+            customerService.add(customer, customerIncomeDto);
             return "advisor-panel";
         }
         return "customers";

@@ -41,6 +41,8 @@ public class Customer {
     @Column(name = "customer_status")
     private String customerStatus; //status klienta - 1. prospect, 2. złożont wniosek; //TODO przerobić na enum
 
+//    @Column
+//    private CustomerIncome customerIncome;
 //    @ManyToOne
 //    private User financeAdvisor;
 
