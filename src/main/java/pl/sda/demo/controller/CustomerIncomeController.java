@@ -32,12 +32,12 @@ public class CustomerIncomeController {
 
 
     //    @Secured({"ROLE_ADVISOR"})
-    @PostMapping("/customers/add")
-    public String customerIncomeAdding(Model model, @ModelAttribute("customerIncome") @Valid CustomerIncomeDto user2, BindingResult bindingResult) {
-        if (!bindingResult.hasErrors()) {
-            customerIncomeService.add(user2);
-        }
-
-        return "customers";
-    }
+//    @PostMapping("/customers/add")
+//    public String customerIncomeAdding(Model model, @ModelAttribute("customerIncome") @Valid CustomerIncomeDto user2, BindingResult bindingResult) {
+//        if (!bindingResult.hasErrors()) {
+//            customerIncomeService.add(user2);
+//        }
+//
+//        return "customers";
+//    }
 }

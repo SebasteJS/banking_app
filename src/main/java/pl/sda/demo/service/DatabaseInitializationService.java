@@ -8,6 +8,7 @@ import pl.sda.demo.model.Customer;
 import pl.sda.demo.model.CustomerIncome;
 import pl.sda.demo.model.Role;
 import pl.sda.demo.model.User;
+import pl.sda.demo.repository.CustomerIncomeRepository;
 import pl.sda.demo.repository.CustomerRepository;
 import pl.sda.demo.repository.RoleRepository;
 import pl.sda.demo.repository.UserRepository;
@@ -28,6 +29,7 @@ public class DatabaseInitializationService implements CommandLineRunner {
     private final PasswordEncoder PasswordEncoder;
     private final CustomerRepository customerRepository;
     private final CustomerService customerService;
+    private final CustomerIncomeRepository customerIncomeRepository;
 
 
     @Override
@@ -64,6 +66,15 @@ public class DatabaseInitializationService implements CommandLineRunner {
                 .build();
         customerRepository.save(cust);
 
+        CustomerIncome cI2 = CustomerIncome.builder()
+                .netIncome(7000.50)
+                .isContractOfEmployment(true)
+                .isIndefiniteContract(true)
+                .isSelfEmployed(false)
+                .formOfSettlement("")
+                .build();
+        customerIncomeRepository.save(cI2);
+
         Customer cust2 = Customer.builder()
                 .age(30)
                 .email("krzyhoooooo.91@o2.pl")
@@ -72,7 +83,7 @@ public class DatabaseInitializationService implements CommandLineRunner {
                 .firstName("jan")
                 .phone("999999999")
                 .customerStatus("oczekujący")
-                .customerIncome(new CustomerIncome(3000.0, true, true, true, "",cust))
+                .customerIncome(cI2)
                 .build();
         customerRepository.save(cust2);
 

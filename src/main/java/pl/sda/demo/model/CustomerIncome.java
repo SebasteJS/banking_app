@@ -34,9 +34,8 @@ public class CustomerIncome {
     @Column
     private String formOfSettlement; //kpir, ryczalt karta podatkowa
 
-    @OneToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
-    private Customer customer;
+//    @OneToOne(mappedBy = "customerIncome")
+//    private Customer customer;
 
 
 }

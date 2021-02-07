@@ -50,7 +50,8 @@ public class Customer {
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
     private Property property;
 
-    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "customerIncome_id")
     private CustomerIncome customerIncome;
 
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
