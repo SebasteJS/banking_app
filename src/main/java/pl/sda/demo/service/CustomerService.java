@@ -88,23 +88,23 @@ public class CustomerService {
     Customer customer1;
     CustomerIncome customerIncome1;
 
-    public Long add(CustomerDto customer, CustomerIncomeDto customerIncomeDto) {
-        customerIncome1 = CustomerIncome.builder()
-                .netIncome(customerIncomeDto.getNetIncome())
-                .build();
-        customerIncomeRepository.save(customerIncome1);
-
-
+    public Long add(CustomerDto customerDto, CustomerIncomeDto customerIncomeDto) {
+//        customerIncome1 = CustomerIncome.builder()
+//                .netIncome(customerIncomeDto.getNetIncome())
+//                .build();
+//        customerIncomeRepository.save(customerIncome1);
 
         customer1 = Customer.builder()
-                .firstName(customer.getFirstName())
-                .lastName(customer.getLastName())
-                .phone(customer.getPhone())
-                .email(customer.getEmail())
-                .age(customer.getAge())
-                .kids(customer.getKids())
-                .customerStatus(customer.getCustomerStatus())
-                .customerIncome(customerIncome1)
+                .firstName(customerDto.getFirstName())
+                .lastName(customerDto.getLastName())
+                .phone(customerDto.getPhone())
+                .email(customerDto.getEmail())
+                .age(customerDto.getAge())
+                .kids(customerDto.getKids())
+                .customerStatus(customerDto.getCustomerStatus())
+
+                .customerIncome(customerIncomeDto.getCustomerIncome())
+//                .customerIncome(customerIncome1)
                 .build();
         customerRepository.save(customer1);
         return customer1.getId();

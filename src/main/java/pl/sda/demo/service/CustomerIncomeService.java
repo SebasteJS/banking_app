@@ -19,13 +19,14 @@ public class CustomerIncomeService {
     public Long add(CustomerIncomeDto customerIncomeDto) {
         CustomerIncome customerIncome1 = CustomerIncome.builder()
                 .netIncome(customerIncomeDto.getNetIncome())
-//                .isContractOfEmployment(customerIncomeDto.isContractOfEmployment())
-//                .isIndefiniteContract(customerIncomeDto.isIndefiniteContract())
-//                .isSelfEmployed(customerIncomeDto.isSelfEmployed())
-//                .formOfSettlement(customerIncomeDto.getFormOfSettlement())
+                .isContractOfEmployment(customerIncomeDto.isContractOfEmployment())
+                .isIndefiniteContract(customerIncomeDto.isIndefiniteContract())
+                .isSelfEmployed(customerIncomeDto.isSelfEmployed())
+                .formOfSettlement(customerIncomeDto.getFormOfSettlement())
                 .build();
         customerIncomeRepository.save(customerIncome1);
         return customerIncomeRepository.save(customerIncome1).getId();
+//        return 0l;
     }
 
     public List<CustomerIncomeDto> findAll() {

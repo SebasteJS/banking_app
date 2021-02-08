@@ -13,6 +13,7 @@ import pl.sda.demo.dto.CustomerDto;
 import pl.sda.demo.dto.CustomerIncomeDto;
 import pl.sda.demo.model.Customer;
 import pl.sda.demo.repository.CustomerRepository;
+import pl.sda.demo.service.CustomerIncomeService;
 import pl.sda.demo.service.CustomerService;
 
 import javax.validation.Valid;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 public class CustomerController {
 
     private final CustomerService customerService;
+    private final CustomerIncomeService customerIncomeService;
     private final CustomerRepository customerRepository;
 
 
@@ -53,8 +55,9 @@ public class CustomerController {
 
     @Secured({"ROLE_ADVISOR", "ROLE_CLIENT"})
     @PostMapping("customers/add")
-    public String addCustomer(@ModelAttribute("customer") @Valid CustomerDto customer, CustomerIncomeDto customerIncomeDto, BindingResult bindingResult) {
+    public String addCustomer(@ModelAttribute("customer") @Valid CustomerIncomeDto customerIncomeDto, @Valid CustomerDto customer, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
+            customerIncomeService.add(customerIncomeDto);
             customerService.add(customer, customerIncomeDto);
             return "advisor-panel";
         }

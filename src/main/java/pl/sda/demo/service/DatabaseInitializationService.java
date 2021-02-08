@@ -54,51 +54,51 @@ public class DatabaseInitializationService implements CommandLineRunner {
         Role clientRole = roleRepository.findByType(RoleType.CLIENT);
         Role adminRole = roleRepository.findByType(RoleType.ADMIN);
 
-        CustomerIncome cI1 = CustomerIncome.builder()
-                .netIncome(3000.75)
-                .isContractOfEmployment(true)
-                .isIndefiniteContract(true)
-                .isSelfEmployed(false)
-                .formOfSettlement("")
-                .build();
-        customerIncomeRepository.save(cI1);
-
-        Customer cust = Customer.builder()
-                .age(20)
-                .email("krzyho.91@o2.pl")
-                .kids(2)
-                .lastName("mowak")
-                .firstName("jan")
-                .phone("999999999")
-                .customerStatus("oczekujący")
-                .customerIncome(cI1)
-                .build();
-        customerRepository.save(cust);
-
-        CustomerIncome cI2 = CustomerIncome.builder()
-                .netIncome(7000.50)
-                .isContractOfEmployment(true)
-                .isIndefiniteContract(true)
-                .isSelfEmployed(false)
-                .formOfSettlement("")
-                .build();
-        customerIncomeRepository.save(cI2);
-
-        Customer cust2 = Customer.builder()
-                .age(30)
-                .email("krzyhoooooo.91@o2.pl")
-                .kids(2)
-                .lastName("Nowak")
-                .firstName("jan")
-                .phone("999999999")
-                .customerStatus("oczekujący")
-                .customerIncome(cI2)
-                .build();
-        customerRepository.save(cust2);
+//        CustomerIncome cI1 = CustomerIncome.builder()
+//                .netIncome(3000.75)
+//                .isContractOfEmployment(true)
+//                .isIndefiniteContract(true)
+//                .isSelfEmployed(false)
+//                .formOfSettlement("")
+//                .build();
+//        customerIncomeRepository.save(cI1);
+//
+//        Customer cust = Customer.builder()
+//                .age(20)
+//                .email("krzyho.91@o2.pl")
+//                .kids(2)
+//                .lastName("mowak")
+//                .firstName("jan")
+//                .phone("999999999")
+//                .customerStatus("oczekujący")
+//                .customerIncome(cI1)
+//                .build();
+//        customerRepository.save(cust);
+//
+//        CustomerIncome cI2 = CustomerIncome.builder()
+//                .netIncome(7000.50)
+//                .isContractOfEmployment(true)
+//                .isIndefiniteContract(true)
+//                .isSelfEmployed(false)
+//                .formOfSettlement("")
+//                .build();
+//        customerIncomeRepository.save(cI2);
+//
+//        Customer cust2 = Customer.builder()
+//                .age(30)
+//                .email("krzyhoooooo.91@o2.pl")
+//                .kids(2)
+//                .lastName("Nowak")
+//                .firstName("jan")
+//                .phone("999999999")
+//                .customerStatus("oczekujący")
+//                .customerIncome(cI2)
+//                .build();
+//        customerRepository.save(cust2);
 
         List<Customer> testCustomersList = new ArrayList<>();
-        testCustomersList.add(cust);
-        testCustomersList.add(cust2);
+//        testCustomersList.add(cust);
+//        testCustomersList.add(cust2);
 
 
         userRepository.save(new User(null, "Marcin", "Kwiatkowski", "innyLogin",
