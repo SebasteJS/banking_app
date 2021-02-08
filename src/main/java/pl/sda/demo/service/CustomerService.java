@@ -88,11 +88,11 @@ public class CustomerService {
     Customer customer1;
     CustomerIncome customerIncome1;
 
-    public Long add(CustomerDto customer, CustomerIncomeDto customerIncomeDto) {
-        customerIncome1 = CustomerIncome.builder()
-                .netIncome(customerIncomeDto.getNetIncome())
-                .build();
-        customerIncomeRepository.save(customerIncome1);
+    public Long add(CustomerDto customer) {
+//        customerIncome1 = CustomerIncome.builder()
+//                .netIncome(customerIncomeDto.getNetIncome())
+//                .build();
+//        customerIncomeRepository.save(customerIncome1);
 
 
 
@@ -104,7 +104,8 @@ public class CustomerService {
                 .age(customer.getAge())
                 .kids(customer.getKids())
                 .customerStatus(customer.getCustomerStatus())
-                .customerIncome(customerIncome1)
+                .customerIncome(customer.getCustomerIncome())
+//                .customerIncome(customerIncome1)
                 .build();
         customerRepository.save(customer1);
         return customer1.getId();
