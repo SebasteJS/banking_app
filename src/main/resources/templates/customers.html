@@ -254,45 +254,36 @@
                     // customerIncome
 
                     <div class="control-group">
-                        <label class="control-label" for="customerIncome.netIncome">Dochód netto</label>
+                        <label class="control-label" for="netIncome">Dochód netto</label>
                         <div class="controls">
-                            <input type="number" id="customerIncome.netIncome"
-                                   name="netIncome" placeholder="zł" class="input-xlarge"
-                                   th:field="*{customerIncome.netIncome}">
+                            <input type="number" id="netIncome"
+                                   name="netIncome" placeholder="zł" class="input-xlarge">
+<!--                                   th:field="*{netIncome}">-->
                         </div>
                     </div>
 
-                    <div>
-                        <select th:field="*{customerIncome.isContractOfEmployment}">
-                            <option th:value="'true'"
-                                    th:text="true">Nieokreślony
-                            </option>
-                            <option th:value="'false'"
-                                    th:text="false">Określony
-                            </option>
-                        </select>
-                    </div>
 
-<!--                    <div class="control-group">-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Umowa o pracę<br/>-->
-<!--                                <select id="isContractOfEmployment"-->
-<!--                                        name="isContractOfEmployment">-->
-<!--                                    &lt;!&ndash;                                    th:field="*{customerIncome.isContractOfEmployment()}">&ndash;&gt;-->
-<!--                                    <option th:value="false">Nie</option>-->
-<!--                                    <option th:value="true">Tak</option>-->
-<!--                                </select>-->
-<!--                            </label>-->
-<!--                        </div>-->
-<!--                    </div>-->
+
+                    <!--                    <div class="control-group">-->
+                    <!--                        <div class="form-group">-->
+                    <!--                            <label>Umowa o pracę<br/>-->
+                    <!--                                <select id="isContractOfEmployment"-->
+                    <!--                                        name="isContractOfEmployment">-->
+                    <!--                                    &lt;!&ndash;                                    th:field="*{customerIncome.isContractOfEmployment()}">&ndash;&gt;-->
+                    <!--                                    <option th:value="false">Nie</option>-->
+                    <!--                                    <option th:value="true">Tak</option>-->
+                    <!--                                </select>-->
+                    <!--                            </label>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
 
                     <br/>
 
                     <div class="form-group">
                         <label>Typ umowy<br/>
                             <select
-                                    id="customerIncome.isIndefiniteContract"
-                                    name="customerIncome.isIndefiniteContract">
+                                    id="isIndefiniteContract"
+                                    name="isIndefiniteContract">
                                 <!--                                    th:field="*{customerIncome.isIndefiniteContract()}">-->
                                 <option th:value="true">Czas nieokreślony</option>
                                 <option th:value="false">Czas określony</option>
@@ -303,8 +294,8 @@
 
                     <div class="form-group">
                         <label> Samozatrudnienie<br/>
-                            <select id="customerIncome.isSelfEmployed"
-                                    name="customerIncome.isSelfEmployed">
+                            <select id="isSelfEmployed"
+                                    name="isSelfEmployed">
                                 <!--                                    th:field="*{customerIncome.isSelfEmployed()}">-->
                                 <option th:value="false">Nie</option>
                                 <option th:value="true">Tak</option>
@@ -315,8 +306,8 @@
 
                     <div class="form-group">
                         <label> Forma rozliczenia<br/>
-                            <select id="customerIncome.formOfSettlement"
-                                    name="customerIncome.formOfSettlement">
+                            <select id="formOfSettlement"
+                                    name="formOfSettlement">
                                 <!--                                    th:field="*{customerIncome.formOfSettlement}">-->
                                 <option value="-">Nie dotyczy</option>
                                 <option value="KPIR">KPIR</option>

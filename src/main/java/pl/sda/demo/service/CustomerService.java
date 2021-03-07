@@ -2,16 +2,21 @@ package pl.sda.demo.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sda.demo.dto.CustomerDto;
 import pl.sda.demo.dto.CustomerIncomeDto;
 import pl.sda.demo.model.Customer;
 import pl.sda.demo.model.CustomerIncome;
+import pl.sda.demo.model.User;
 import pl.sda.demo.repository.CustomerIncomeRepository;
 import pl.sda.demo.repository.CustomerRepository;
+import pl.sda.demo.repository.UserRepository;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,8 +28,17 @@ public class CustomerService {
     @Autowired
     CustomerIncomeRepository customerIncomeRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    UserService userService;
+
     private final List<Long> listaId = new ArrayList<>();
     private List<Customer> customerListIds = new ArrayList<>();
+    public List<Customer> userCustomers = new ArrayList<>();
+
+
 
 
     public List<CustomerDto> listCustomers() {
@@ -86,13 +100,18 @@ public class CustomerService {
 
 
     Customer customer1;
-    CustomerIncome customerIncome1;
+    CustomerIncome customerIncome;
+
 
     public Long add(CustomerDto customerDto, CustomerIncomeDto customerIncomeDto) {
-//        customerIncome1 = CustomerIncome.builder()
-//                .netIncome(customerIncomeDto.getNetIncome())
-//                .build();
-//        customerIncomeRepository.save(customerIncome1);
+        customerIncome = CustomerIncome.builder()
+                .netIncome(customerIncomeDto.getNetIncome())
+                .isContractOfEmployment(customerIncomeDto.isContractOfEmployment())
+                .isIndefiniteContract(customerIncomeDto.isIndefiniteContract())
+                .isSelfEmployed(customerIncomeDto.isSelfEmployed())
+                .formOfSettlement(customerIncomeDto.getFormOfSettlement())
+                .build();
+        customerIncomeRepository.save(customerIncome);
 
         customer1 = Customer.builder()
                 .firstName(customerDto.getFirstName())
@@ -102,16 +121,22 @@ public class CustomerService {
                 .age(customerDto.getAge())
                 .kids(customerDto.getKids())
                 .customerStatus(customerDto.getCustomerStatus())
-
-                .customerIncome(customerIncomeDto.getCustomerIncome())
+                .customerIncome(customerIncome)
 //                .customerIncome(customerIncome1)
                 .build();
+        userCustomers.add(customer1);
+
         customerRepository.save(customer1);
+
+        Optional<User> user = userRepository.findById(customer1.getId());
+        userService.updateCustomerList(user);
+
+
         return customer1.getId();
     }
 
 
-    public void update(CustomerDto customerDto) {
+    public void update(CustomerDto customerDto, CustomerIncomeDto customerIncomeDto) {
         Optional<Customer> optionalCustomer = customerRepository.findById(customerDto.getId());
         if (optionalCustomer.isPresent()) {
             Customer customer = optionalCustomer.get();
@@ -122,7 +147,7 @@ public class CustomerService {
             customer.setAge(customerDto.getAge());
             customer.setKids(customerDto.getKids());
             customer.setCustomerStatus(customerDto.getCustomerStatus());
-            customer.setCustomerIncome(customerDto.getCustomerIncome());
+            customer.setCustomerIncome(customerIncome);
             customerRepository.save(customer);
         }
     }

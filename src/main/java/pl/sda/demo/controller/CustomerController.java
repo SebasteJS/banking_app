@@ -57,7 +57,7 @@ public class CustomerController {
     @PostMapping("customers/add")
     public String addCustomer(@ModelAttribute("customer") @Valid CustomerIncomeDto customerIncomeDto, @Valid CustomerDto customer, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
-            customerIncomeService.add(customerIncomeDto);
+//            customerIncomeService.add(customerIncomeDto);
             customerService.add(customer, customerIncomeDto);
             return "advisor-panel";
         }
@@ -67,9 +67,9 @@ public class CustomerController {
 
     @Secured({"ROLE_ADVISOR", "ROLE_CLIENT"})
     @PostMapping("customers/update")
-    public String updateCustomer(@ModelAttribute("customer") @Valid CustomerDto customer, BindingResult bindingResult) {
+    public String updateCustomer(@ModelAttribute("customer") @Valid CustomerDto customer, CustomerIncomeDto customerIncomeDto, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
-            customerService.update(customer);
+            customerService.update(customer, customerIncomeDto);
             return "advisor-panel";
         }
         return "customers";

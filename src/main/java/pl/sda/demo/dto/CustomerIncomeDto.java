@@ -32,7 +32,7 @@ public class CustomerIncomeDto {
     @NotEmpty
     private String formOfSettlement;    //albo kpir, ryczalt karta podatkowa
 
-    @NotEmpty
-    private CustomerIncome customerIncome;
+//    @NotEmpty
+//    private CustomerIncome customerIncome;
 }
 

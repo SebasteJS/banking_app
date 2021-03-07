@@ -41,7 +41,7 @@ public class CustomerDto {
 //    @NotEmpty
     private String customerStatus;
 
-    @NotEmpty
-    private CustomerIncome customerIncome;
+//    @NotEmpty
+//    private CustomerIncome customerIncome;
 
 }

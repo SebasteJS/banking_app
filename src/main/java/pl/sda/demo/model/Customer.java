@@ -52,7 +52,8 @@ public class Customer {
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
     private Property property;
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.MERGE)
+//    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "customerIncome_id")
     private CustomerIncome customerIncome;
 
