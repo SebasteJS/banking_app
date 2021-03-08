@@ -95,6 +95,21 @@ public class UserService {
         }
     }
 
+    public void updateCustomerList2(Optional<User> user, Customer customer) {
+        if (user.isPresent()) {
+            User user1 = user.get();
+            List<Customer> currentCustomers = new ArrayList<>();
+            if (!user1.getCustomers().isEmpty() && user1 != null) {
+                currentCustomers = user1.getCustomers();
+                currentCustomers.add(customer);
+            } else {
+                currentCustomers.add(customer);
+            }
+            user1.setCustomers(currentCustomers);
+            userRepository.save(user1);
+        }
+    }
+
     public void delete(Long userId) {
         userRepository.deleteById(userId);
     }

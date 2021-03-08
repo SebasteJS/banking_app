@@ -129,7 +129,8 @@ public class CustomerService {
         customerRepository.save(customer1);
 
         Optional<User> user = userRepository.findById(6l);
-        userService.updateCustomerList(user, userCustomers);
+//        userService.updateCustomerList(user, userCustomers);
+        userService.updateCustomerList2(user, customer1);
 
 
         return customer1.getId();
