@@ -80,22 +80,18 @@ public class UserService {
     }
 
 
-    public void updateCustomerList(Optional user) {
+    public void updateCustomerList(Optional<User> user, List<Customer> inputList) {
         if (user.isPresent()) {
-            User user1 = (User) user.get();
-            List<Customer> currentCustomers = user1.getCustomers();
-            Optional<User> optionalUser = userRepository.findById(userId);
-            User user2 =(User) optionalUser.get();
-            if (!user2.getCustomers().isEmpty() && user2.getCustomers() != null) {
-                List<Customer> oldCustomers = user2.getCustomers();
-                oldCustomers.addAll(currentCustomers);
-                user2.setCustomers(oldCustomers);
-                user1.setCustomers(user2.getCustomers()); ////////pomysl czy tak ma byc
-                userRepository.save(user1);
+            User user1 = user.get();
+            List<Customer> currentCustomers;
+            if (!user1.getCustomers().isEmpty() && user1 != null) {
+                currentCustomers = user1.getCustomers();
+                currentCustomers.addAll(inputList);
+                user1.setCustomers(currentCustomers);
             } else {
-                List<Customer> newList = new ArrayList<>();
-                user2.setCustomers(newList);
+                user1.setCustomers(inputList);
             }
+            userRepository.save(user1);
         }
     }
 
