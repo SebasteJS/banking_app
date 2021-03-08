@@ -79,34 +79,47 @@ public class UserService {
         }
     }
 
+//
+//    public void updateCustomerList(Optional<User> user, List<Customer> inputList) {
+//        if (user.isPresent()) {
+//            User user1 = user.get();
+//            List<Customer> currentCustomers;
+//            if (!user1.getCustomers().isEmpty() && user1 != null) {
+//                currentCustomers = user1.getCustomers();
+//                currentCustomers.addAll(inputList);
+//                user1.setCustomers(currentCustomers);
+//            } else {
+//                user1.setCustomers(inputList);
+//            }
+//            userRepository.save(user1);
+//        }
+//    }
 
-    public void updateCustomerList(Optional<User> user, List<Customer> inputList) {
-        if (user.isPresent()) {
-            User user1 = user.get();
-            List<Customer> currentCustomers;
-            if (!user1.getCustomers().isEmpty() && user1 != null) {
-                currentCustomers = user1.getCustomers();
-                currentCustomers.addAll(inputList);
-                user1.setCustomers(currentCustomers);
-            } else {
-                user1.setCustomers(inputList);
-            }
-            userRepository.save(user1);
-        }
-    }
-
-    public void updateCustomerList2(Optional<User> user, Customer customer) {
-        if (user.isPresent()) {
-            User user1 = user.get();
+    //    public void updateCustomerList(Optional<User> user, Customer customer) {
+//        if (user.isPresent()) {
+//            User user1 = user.get();
+//            List<Customer> currentCustomers = new ArrayList<>();
+//            if (!user1.getCustomers().isEmpty() && user1 != null) {
+//                currentCustomers = user1.getCustomers();
+//                currentCustomers.add(customer);
+//            } else {
+//                currentCustomers.add(customer);
+//            }
+//            user1.setCustomers(currentCustomers);
+//            userRepository.save(user1);
+//        }
+//    }
+    public void updateCustomerList(User user, Customer customer) {
+        if (user != null) {
             List<Customer> currentCustomers = new ArrayList<>();
-            if (!user1.getCustomers().isEmpty() && user1 != null) {
-                currentCustomers = user1.getCustomers();
+            if (!user.getCustomers().isEmpty() && user != null) {
+                currentCustomers = user.getCustomers();
                 currentCustomers.add(customer);
             } else {
                 currentCustomers.add(customer);
             }
-            user1.setCustomers(currentCustomers);
-            userRepository.save(user1);
+            user.setCustomers(currentCustomers);
+            userRepository.save(user);
         }
     }
 

@@ -2,7 +2,8 @@ package pl.sda.demo.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import pl.sda.demo.dto.CustomerDto;
 import pl.sda.demo.dto.CustomerIncomeDto;
@@ -14,7 +15,6 @@ import pl.sda.demo.repository.CustomerRepository;
 import pl.sda.demo.repository.UserRepository;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,9 +36,7 @@ public class CustomerService {
 
     private final List<Long> listaId = new ArrayList<>();
     private List<Customer> customerListIds = new ArrayList<>();
-    public List<Customer> userCustomers = new ArrayList<>();
-
-
+//    public List<Customer> userCustomers = new ArrayList<>();
 
 
     public List<CustomerDto> listCustomers() {
@@ -124,16 +122,26 @@ public class CustomerService {
                 .customerIncome(customerIncome)
 //                .customerIncome(customerIncome1)
                 .build();
-        userCustomers.add(customer1);
+//        userCustomers.add(customer1);
 
         customerRepository.save(customer1);
 
-        Optional<User> user = userRepository.findById(6l);
-//        userService.updateCustomerList(user, userCustomers);
-        userService.updateCustomerList2(user, customer1);
-
-
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        List<User> users = userRepository.findAll();
+        User currentUser = findCurrentUser(name, users);
+        userService.updateCustomerList(currentUser, customer1);
         return customer1.getId();
+    }
+
+    private User findCurrentUser(String name, List<User> users) {
+        User currentUser = new User();
+        for (User user : users) {
+            if (user.getLogin().equals(name)) {
+                currentUser = user;
+            }
+        }
+        return currentUser;
     }
 
 
