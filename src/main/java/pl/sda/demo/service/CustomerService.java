@@ -34,10 +34,8 @@ public class CustomerService {
     @Autowired
     UserService userService;
 
-    private final List<Long> listaId = new ArrayList<>();
-    private List<Customer> customerListIds = new ArrayList<>();
-//    public List<Customer> userCustomers = new ArrayList<>();
-
+    Customer customer;
+    CustomerIncome customerIncome;
 
     public List<CustomerDto> listCustomers() {
         List<CustomerDto> customerDtoCustomer = new ArrayList<>();
@@ -56,50 +54,12 @@ public class CustomerService {
         return customerDtoCustomer;
     }
 
-
-    List<Customer> customerList = new ArrayList<>();
-
     public List<Customer> findCustomersForUser() {
-
-        Iterable<Customer> customers = customerRepository.findAllById(listaId);
-        for (Customer customer2 : customers) {
-            customerList.add(
-                    Customer.builder()
-                            .firstName(customer2.getFirstName())
-                            .lastName(customer2.getLastName())
-                            .phone(customer2.getPhone())
-                            .email(customer2.getEmail())
-                            .age(customer2.getAge())
-                            .kids(customer2.getKids())
-                            .customerStatus(customer2.getCustomerStatus())
-                            .build());
-        }
-
-
-        customerList = customerRepository.findAll(); //dfodaje wszystkich customerów, a nie tylko należących do usera
-
-
-        if (customer1 != null) {
-
-            listaId.add(customer1.getId());
-            customerListIds = customerRepository.findAllById(listaId);
-
-            if (!customerList.contains(customer1)) {
-                customerListIds.addAll(customerList);
-                System.out.println("Lista customerListIds");
-                System.out.println(customerListIds);
-                return customerListIds;
-            } else
-                return customerListIds;
-
-        } else
-            return customerList;
+        User currentUser = getCurrentUser();
+        List<Customer> customersList;
+        customersList = currentUser.getCustomers();
+        return customersList;
     }
-
-
-    Customer customer1;
-    CustomerIncome customerIncome;
-
 
     public Long add(CustomerDto customerDto, CustomerIncomeDto customerIncomeDto) {
         customerIncome = CustomerIncome.builder()
@@ -111,7 +71,7 @@ public class CustomerService {
                 .build();
         customerIncomeRepository.save(customerIncome);
 
-        customer1 = Customer.builder()
+        customer = Customer.builder()
                 .firstName(customerDto.getFirstName())
                 .lastName(customerDto.getLastName())
                 .phone(customerDto.getPhone())
@@ -120,18 +80,19 @@ public class CustomerService {
                 .kids(customerDto.getKids())
                 .customerStatus(customerDto.getCustomerStatus())
                 .customerIncome(customerIncome)
-//                .customerIncome(customerIncome1)
                 .build();
-//        userCustomers.add(customer1);
+        customerRepository.save(customer);
 
-        customerRepository.save(customer1);
+        User currentUser = getCurrentUser();
+        userService.updateCustomerList(currentUser, customer);
+        return customer.getId();
+    }
 
+    private User getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         List<User> users = userRepository.findAll();
-        User currentUser = findCurrentUser(name, users);
-        userService.updateCustomerList(currentUser, customer1);
-        return customer1.getId();
+        return findCurrentUser(name, users);
     }
 
     private User findCurrentUser(String name, List<User> users) {
