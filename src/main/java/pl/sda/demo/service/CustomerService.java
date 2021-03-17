@@ -20,6 +20,7 @@ import pl.sda.demo.repository.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 @RequiredArgsConstructor
@@ -105,13 +106,12 @@ public class CustomerService {
     }
 
     private User findCurrentUser(String name, List<User> users) {
-        User currentUser = new User();
-        for (User user : users) {
-            if (user.getLogin().equals(name)) {
-                currentUser = user;
-            }
-        }
-        return currentUser;
+        AtomicReference<User> currentUser = new AtomicReference<>(new User());
+        users.stream()
+                .filter(e -> e.getLogin().equals(name))
+                .forEach(currentUser::set);
+
+        return currentUser.get();
     }
 
 
