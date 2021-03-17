@@ -24,6 +24,7 @@ public class CustomerIncomeService {
                 .isSelfEmployed(customerIncomeDto.isSelfEmployed())
                 .formOfSettlement(customerIncomeDto.getFormOfSettlement())
                 .build();
+
         customerIncomeRepository.save(customerIncome1);
         return customerIncomeRepository.save(customerIncome1).getId();
 //        return 0l;

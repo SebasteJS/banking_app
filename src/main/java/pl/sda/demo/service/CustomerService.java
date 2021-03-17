@@ -7,11 +7,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import pl.sda.demo.dto.CustomerDto;
 import pl.sda.demo.dto.CustomerIncomeDto;
+import pl.sda.demo.dto.PropertyDto;
 import pl.sda.demo.model.Customer;
 import pl.sda.demo.model.CustomerIncome;
+import pl.sda.demo.model.Property;
 import pl.sda.demo.model.User;
 import pl.sda.demo.repository.CustomerIncomeRepository;
 import pl.sda.demo.repository.CustomerRepository;
+import pl.sda.demo.repository.PropertyRepository;
 import pl.sda.demo.repository.UserRepository;
 
 import java.util.ArrayList;
@@ -34,8 +37,12 @@ public class CustomerService {
     @Autowired
     UserService userService;
 
+    @Autowired
+    PropertyRepository propertyRepository;
+
     Customer customer;
     CustomerIncome customerIncome;
+    Property property;
 
     public List<CustomerDto> listCustomers() {
         List<CustomerDto> customerDtoCustomer = new ArrayList<>();
@@ -61,7 +68,7 @@ public class CustomerService {
         return customersList;
     }
 
-    public Long add(CustomerDto customerDto, CustomerIncomeDto customerIncomeDto) {
+    public Long add(CustomerDto customerDto, CustomerIncomeDto customerIncomeDto, PropertyDto propertyDto) {
         customerIncome = CustomerIncome.builder()
                 .netIncome(customerIncomeDto.getNetIncome())
                 .isContractOfEmployment(customerIncomeDto.isContractOfEmployment())
@@ -70,6 +77,14 @@ public class CustomerService {
                 .formOfSettlement(customerIncomeDto.getFormOfSettlement())
                 .build();
         customerIncomeRepository.save(customerIncome);
+
+        property = Property.builder()
+                .isFlat(propertyDto.getIsFlat())
+                .marketOfTransaction(propertyDto.getMarketOfTransaction())
+                .ownership(propertyDto.getOwnership())
+                .price(propertyDto.getPrice())
+                .build();
+        propertyRepository.save(property);
 
         customer = Customer.builder()
                 .firstName(customerDto.getFirstName())
@@ -80,6 +95,7 @@ public class CustomerService {
                 .kids(customerDto.getKids())
                 .customerStatus(customerDto.getCustomerStatus())
                 .customerIncome(customerIncome)
+                .property(property)
                 .build();
         customerRepository.save(customer);
 

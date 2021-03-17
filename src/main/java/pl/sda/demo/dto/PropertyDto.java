@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
 
 @Data
@@ -17,9 +18,10 @@ public class PropertyDto {
     @NotEmpty
     private double price;
 
-    private boolean isPrimaryMarket; // rynek wtórny albo pierwotny
+    @NotEmpty
+    private String marketOfTransaction; // rynek wtórny albo pierwotny
 
-    private String isOwnership; // własność albo spółdzielcze własnościowe
+    private String ownership; // własność albo spółdzielcze własnościowe
 
     private String isFlat;  // mieszkanie albo dom
 
