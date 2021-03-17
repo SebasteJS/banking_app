@@ -17,7 +17,7 @@ public class CustomerIncomeService {
 
 
     public Long add(CustomerIncomeDto customerIncomeDto) {
-        CustomerIncome customerIncome1 = CustomerIncome.builder()
+        CustomerIncome customerIncome = CustomerIncome.builder()
                 .netIncome(customerIncomeDto.getNetIncome())
                 .isContractOfEmployment(customerIncomeDto.isContractOfEmployment())
                 .isIndefiniteContract(customerIncomeDto.isIndefiniteContract())
@@ -25,8 +25,8 @@ public class CustomerIncomeService {
                 .formOfSettlement(customerIncomeDto.getFormOfSettlement())
                 .build();
 
-        customerIncomeRepository.save(customerIncome1);
-        return customerIncomeRepository.save(customerIncome1).getId();
+        customerIncomeRepository.save(customerIncome);
+        return customerIncome.getId();
 //        return 0l;
     }
 

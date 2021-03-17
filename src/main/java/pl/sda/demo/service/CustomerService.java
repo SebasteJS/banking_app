@@ -36,6 +36,10 @@ public class CustomerService {
 
     @Autowired
     UserService userService;
+    @Autowired
+    CustomerIncomeService customerIncomeService;
+    @Autowired
+    PropertyService propertyService;
 
     @Autowired
     PropertyRepository propertyRepository;
@@ -69,22 +73,11 @@ public class CustomerService {
     }
 
     public Long add(CustomerDto customerDto, CustomerIncomeDto customerIncomeDto, PropertyDto propertyDto) {
-        customerIncome = CustomerIncome.builder()
-                .netIncome(customerIncomeDto.getNetIncome())
-                .isContractOfEmployment(customerIncomeDto.isContractOfEmployment())
-                .isIndefiniteContract(customerIncomeDto.isIndefiniteContract())
-                .isSelfEmployed(customerIncomeDto.isSelfEmployed())
-                .formOfSettlement(customerIncomeDto.getFormOfSettlement())
-                .build();
-        customerIncomeRepository.save(customerIncome);
+        long incomeId = customerIncomeService.add(customerIncomeDto);
+        customerIncome = customerIncomeRepository.getOne(incomeId);
 
-        property = Property.builder()
-                .isFlat(propertyDto.getIsFlat())
-                .marketOfTransaction(propertyDto.getMarketOfTransaction())
-                .ownership(propertyDto.getOwnership())
-                .price(propertyDto.getPrice())
-                .build();
-        propertyRepository.save(property);
+        long propertyId = propertyService.add(propertyDto);
+        property = propertyRepository.getOne(propertyId);
 
         customer = Customer.builder()
                 .firstName(customerDto.getFirstName())
