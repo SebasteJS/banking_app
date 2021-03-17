@@ -3,6 +3,7 @@ package pl.sda.demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import pl.sda.demo.config.SecurityConfig;
@@ -20,6 +21,7 @@ import java.util.List;
 @EntityScan("pl.sda.demo.model")
 @EnableJpaRepositories("pl.sda.demo.repository")
 @Import(SecurityConfig.class)
+@EnableAspectJAutoProxy
 public class DemoApplication {
 
     public static void main(String[] args) {
