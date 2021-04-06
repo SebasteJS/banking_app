@@ -116,7 +116,7 @@ public class CustomerService {
 
 
     public void update(CustomerDto customerDto, CustomerIncomeDto customerIncomeDto) {
-        Optional<Customer> optionalCustomer = customerRepository.findById(customerDto.getId());
+        Optional<Customer> optionalCustomer = customerRepository.findByEmail(customerDto.getEmail());
         if (optionalCustomer.isPresent()) {
             Customer customer = optionalCustomer.get();
             customer.setFirstName(customerDto.getFirstName());
@@ -127,7 +127,7 @@ public class CustomerService {
             customer.setKids(customerDto.getKids());
             customer.setCustomerStatus(customerDto.getCustomerStatus());
             customer.setCustomerIncome(customerIncome);
-            customerRepository.save(customer);
+        customerRepository.save(customer);
         }
     }
 
