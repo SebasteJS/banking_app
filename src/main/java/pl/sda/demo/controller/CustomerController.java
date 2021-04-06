@@ -27,8 +27,6 @@ import java.util.ArrayList;
 public class CustomerController {
 
     private final CustomerService customerService;
-    private final CustomerIncomeService customerIncomeService;
-    private final CustomerRepository customerRepository;
 
 
     @Secured({"ROLE_ADVISOR", "ROLE_CLIENT"})// albo to albo @preauthorize na gorze
@@ -39,19 +37,19 @@ public class CustomerController {
     }
 
 
-    @Secured({"ROLE_ADMIN"})//
-    @GetMapping("/customers-admin")// tu zmienilem z customers_admin na customers by wyswietlilo ustomersow
-    public String customersAdmin(Model model) {
-        if (!customerRepository.findAll().isEmpty() || customerRepository.findAll().size() != 0) {
-            model.addAttribute("customers", customerService.listCustomers());
-            model.addAttribute("customer", new CustomerDto());
-        }
-        if (customerRepository.findAll().isEmpty() || customerRepository.findAll().size() == 0) {
-            model.addAttribute("customers", new ArrayList<CustomerDto>());
-            model.addAttribute("customer", new CustomerDto());
-        }
-        return "customers";
-    }
+//    @Secured({"ROLE_ADMIN"})//
+//    @GetMapping("/customers-admin")// tu zmienilem z customers_admin na customers by wyswietlilo ustomersow
+//    public String customersAdmin(Model model) {
+//        if (!customerRepository.findAll().isEmpty() || customerRepository.findAll().size() != 0) {
+//            model.addAttribute("customers", customerService.listCustomers());
+//            model.addAttribute("customer", new CustomerDto());
+//        }
+//        if (customerRepository.findAll().isEmpty() || customerRepository.findAll().size() == 0) {
+//            model.addAttribute("customers", new ArrayList<CustomerDto>());
+//            model.addAttribute("customer", new CustomerDto());
+//        }
+//        return "customers";
+//    }
 
 
     @Secured({"ROLE_ADVISOR", "ROLE_CLIENT"})
@@ -62,7 +60,7 @@ public class CustomerController {
             customerService.add(customerDto, customerIncomeDto, propertyDto);
             return "advisor-panel";
         }
-        return "customers";
+        return "advisor-panel";
     }
 
 
